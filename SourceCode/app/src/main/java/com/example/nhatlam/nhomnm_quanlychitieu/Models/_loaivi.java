@@ -8,6 +8,9 @@ public class _loaivi {
     private int loaivi_id;
     private String loaivi_name;
 
+    public _loaivi() {
+
+    }
     public _loaivi(int loaivi_id, String loaivi_name) {
         this.loaivi_id = loaivi_id;
         this.loaivi_name = loaivi_name;

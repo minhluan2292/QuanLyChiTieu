@@ -9,6 +9,9 @@ public class _category {
     private String category_name;
     private int parent;
 
+    public _category() {
+
+    }
     public _category(int category_id, String category_name, int parent) {
         this.category_id = category_id;
         this.category_name = category_name;

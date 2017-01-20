@@ -12,6 +12,9 @@ public class _vi {
     private String sotien;
     private int donvitien;
 
+    public _vi() {
+        //
+    }
     public _vi(int vi_id, int user_id, String vi_name, int loaivi_id, String sotien, int donvitien) {
         this.vi_id = vi_id;
         this.user_id = user_id;

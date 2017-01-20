@@ -9,6 +9,9 @@ public class _donvitien {
     private String donvitien_name;
     private String tigiadola;
 
+    public _donvitien() {
+
+    }
     public _donvitien(int donvitien_id, String donvitien_name, String tigiadola) {
         this.donvitien_id = donvitien_id;
         this.donvitien_name = donvitien_name;

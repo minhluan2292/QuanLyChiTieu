@@ -8,6 +8,10 @@ public class _loaino {
     private int loaino_id;
     private String loaino_name;
 
+
+    public _loaino() {
+
+    }
     public _loaino(int loaino_id, String loaino_name) {
         this.loaino_id = loaino_id;
         this.loaino_name = loaino_name;

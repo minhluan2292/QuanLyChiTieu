@@ -14,10 +14,15 @@ public class _sono {
     private String doituong;
     private String diadiem;
     private String thoihan;
-    private boolean trangthai;
+    private int trangthai;
+
+
+    public _sono() {
+
+    }
 
     public _sono(int sono_id, int vi_id, int loaino_id, String sotien, String ghichu,
-                 String ngaygiaodich, String doituong, String diadiem, String thoihan, boolean trangthai) {
+                 String ngaygiaodich, String doituong, String diadiem, String thoihan, int trangthai) {
         this.sono_id = sono_id;
         this.vi_id = vi_id;
         this.loaino_id = loaino_id;
@@ -31,7 +36,7 @@ public class _sono {
     }
 
     public _sono( int vi_id, int loaino_id, String sotien, String ghichu,
-                 String ngaygiaodich, String doituong, String diadiem, String thoihan, boolean trangthai) {
+                 String ngaygiaodich, String doituong, String diadiem, String thoihan, int trangthai) {
         //this.sono_id = sono_id;
         this.vi_id = vi_id;
         this.loaino_id = loaino_id;
@@ -108,11 +113,11 @@ public class _sono {
         this.thoihan = thoihan;
     }
 
-    public boolean isTrangthai() {
+    public int getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(boolean trangthai) {
+    public void setTrangthai(int trangthai) {
         this.trangthai = trangthai;
     }
 

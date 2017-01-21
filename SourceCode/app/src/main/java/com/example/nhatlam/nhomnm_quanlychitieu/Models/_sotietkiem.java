@@ -13,6 +13,10 @@ public class _sotietkiem {
     private String ngaytao;
     private String ghichu;
 
+    public _sotietkiem() {
+
+    }
+
     public _sotietkiem(int sotietkiem_id, int vi_id, String sotietkiem_name,
                        String muctieu, String sotienbandau, String ngaytao, String ghichu) {
         this.sotietkiem_id = sotietkiem_id;

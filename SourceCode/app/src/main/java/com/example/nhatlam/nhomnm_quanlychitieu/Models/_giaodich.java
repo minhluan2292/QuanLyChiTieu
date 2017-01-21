@@ -12,6 +12,10 @@ public class _giaodich {
     private String ngaygiaodich;
     private String ghichu;
 
+
+    public _giaodich() {
+
+    }
     public _giaodich(int giaodich_id, int vi_id, int category_id, String sotien, String ngaygiaodich, String ghichu) {
         this.giaodich_id = giaodich_id;
         this.vi_id = vi_id;

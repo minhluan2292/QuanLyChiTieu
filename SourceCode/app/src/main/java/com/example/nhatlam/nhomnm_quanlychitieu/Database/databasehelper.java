@@ -9,7 +9,12 @@ import android.util.Log;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._category;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._donvitien;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._giaodich;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._loaino;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._loaivi;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._sono;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._sotietkiem;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._sukienchitieu;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._vi;
 
@@ -469,6 +474,91 @@ public class databasehelper extends SQLiteOpenHelper {
 
 
     //==============================================TABLE GIAODICH================================================
+    //them giao dich
+    public boolean themGiaodich(_giaodich giaodich){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_VI_ID,giaodich.getVi_id());
+        value.put(dbstring.KEY_CATEGORY_ID,giaodich.getCategory_id());
+        value.put(dbstring.KEY_SOTIEN,giaodich.getSotien());
+        value.put(dbstring.KEY_NGAYGIAODICH,giaodich.getNgaygiaodich());
+        value.put(dbstring.KEY_GHICHU,giaodich.getGhichu());
+
+        try{
+            db.insert(dbstring.TABLE_GIAODICH,null,value);
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
+
+
+    //lay danh sach giaodich
+    public List<_giaodich> laydanhsachGiaodich(_vi vi){
+        List<_giaodich> lstGiaodich = new ArrayList<_giaodich>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAllGiaodich="select * from "+dbstring.TABLE_GIAODICH+" where "+dbstring.KEY_VI_ID+"="+vi.getVi_id();
+
+        Cursor c = db.rawQuery(selectAllGiaodich,null);
+        if(c.moveToFirst()){
+            do{
+                _giaodich giaodich = new _giaodich();
+                giaodich.setGiaodich_id(c.getInt(c.getColumnIndex(dbstring.KEY_GIAODICH_ID)));
+                giaodich.setVi_id(vi.getVi_id());
+                giaodich.setCategory_id(c.getInt(c.getColumnIndex(dbstring.KEY_CATEGORY_ID)));
+                giaodich.setSotien(c.getString(c.getColumnIndex(dbstring.KEY_SOTIEN)));
+                giaodich.setNgaygiaodich(c.getString(c.getColumnIndex(dbstring.KEY_NGAYGIAODICH)));
+                giaodich.setGhichu(c.getString(c.getColumnIndex(dbstring.KEY_GHICHU)));
+
+                lstGiaodich.add(giaodich);
+            }while(c.moveToNext());
+        }
+
+        return lstGiaodich;
+    }
+
+
+    //chinh sua giaodich
+    public boolean chinhsuaGiaodich(_giaodich giaodich){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_VI_ID,giaodich.getVi_id());
+        value.put(dbstring.KEY_CATEGORY_ID,giaodich.getCategory_id());
+        value.put(dbstring.KEY_SOTIEN,giaodich.getSotien());
+        value.put(dbstring.KEY_NGAYGIAODICH,giaodich.getNgaygiaodich());
+        value.put(dbstring.KEY_GHICHU,giaodich.getGhichu());
+
+        try{
+            db.update(dbstring.TABLE_GIAODICH,value,dbstring.KEY_GIAODICH_ID+"=?",
+                    new String[]{Integer.toString(giaodich.getGiaodich_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
+
+
+    //xoa giaodich
+    public  boolean xoaGiaodich(_giaodich giaodich){
+        SQLiteDatabase db= this.getWritableDatabase();
+
+        try{
+            db.delete(dbstring.TABLE_GIAODICH,dbstring.KEY_GIAODICH_ID+"=?",
+                    new String[]{Integer.toString(giaodich.getGiaodich_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
 
     //============================================================================================================
                                         //**********END*********
@@ -476,22 +566,371 @@ public class databasehelper extends SQLiteOpenHelper {
 
     //===============================================TABLE SUKIENCHITIEU==========================================
 
+    //Them sukienchitieu
+    public boolean themSukienchitieu(_sukienchitieu sukienchitieu){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_VI_ID,sukienchitieu.getVi_id());
+        value.put(dbstring.KEY_CATEGORY_ID,sukienchitieu.getCategory_id());
+        value.put(dbstring.KEY_SOTIEN,sukienchitieu.getSotien());
+        value.put(dbstring.KEY_NGAYTHUCHIEN,sukienchitieu.getNgaythuchien());
+        value.put(dbstring.KEY_TRANGTHAI,sukienchitieu.getTrangthai());
+        value.put(dbstring.KEY_GHICHU,sukienchitieu.getGhichu());
+
+        try {
+            db.insert(dbstring.TABLE_SUKIENCHITIEU,null,value);
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
+
+    //lay danh sach sukienchitieu
+    public List<_sukienchitieu> laydanhsachSukienchitieu(_vi vi){
+        List<_sukienchitieu> lstSukienchitieu = new ArrayList<_sukienchitieu>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAllSukienchitieu = "select * from "+dbstring.TABLE_SUKIENCHITIEU+
+                " where "+dbstring.KEY_VI_ID+"="+vi.getVi_id();
+
+        Cursor c = db.rawQuery(selectAllSukienchitieu,null);
+
+        if(c.moveToFirst()){
+            do{
+                _sukienchitieu sukienchitieu = new _sukienchitieu();
+                sukienchitieu.setSukienchitieu_id(c.getInt(c.getColumnIndex(dbstring.KEY_SUKIENCHITIEU_ID)));
+                sukienchitieu.setVi_id(vi.getVi_id());
+                sukienchitieu.setCategory_id(c.getInt(c.getColumnIndex(dbstring.KEY_CATEGORY_ID)));
+                sukienchitieu.setSotien(c.getString(c.getColumnIndex(dbstring.KEY_SOTIEN)));
+                sukienchitieu.setNgaythuchien(c.getString(c.getColumnIndex(dbstring.KEY_NGAYTHUCHIEN)));
+                sukienchitieu.setGhichu(c.getString(c.getColumnIndex(dbstring.KEY_GHICHU)));
+                sukienchitieu.setTrangthai(c.getInt(c.getColumnIndex(dbstring.KEY_TRANGTHAI)));
+
+                lstSukienchitieu.add(sukienchitieu);
+            }while(c.moveToNext());
+        }
+
+        return lstSukienchitieu;
+    }
+
+    //chinh sua sukienchitieu
+    public boolean chinhsuaSukienchitieu(_sukienchitieu sukienchitieu){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_VI_ID,sukienchitieu.getVi_id());
+        value.put(dbstring.KEY_CATEGORY_ID,sukienchitieu.getCategory_id());
+        value.put(dbstring.KEY_SOTIEN,sukienchitieu.getSotien());
+        value.put(dbstring.KEY_NGAYTHUCHIEN,sukienchitieu.getNgaythuchien());
+        value.put(dbstring.KEY_TRANGTHAI,sukienchitieu.getTrangthai());
+        value.put(dbstring.KEY_GHICHU,sukienchitieu.getGhichu());
+
+        try {
+            db.update(dbstring.TABLE_SUKIENCHITIEU,value,dbstring.KEY_SUKIENCHITIEU_ID+"=?",
+                    new String[]{Integer.toString(sukienchitieu.getSukienchitieu_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
+
+
+    //xoa sukienchitieu
+    public boolean xoaSukienchitieu(_sukienchitieu sukienchitieu){
+        SQLiteDatabase db= this.getWritableDatabase();
+
+        try{
+            db.delete(dbstring.TABLE_SUKIENCHITIEU,dbstring.KEY_SUKIENCHITIEU_ID+"=?",
+                    new String[]{Integer.toString(sukienchitieu.getSukienchitieu_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+        return false;
+    }
+
     //============================================================================================================
                                         //**********END*********
 
 
     //=============================================TABLE SOTIETKIEM===============================================
+    //them sotietkiem
+    public boolean themSotietkiem(_sotietkiem sotietkiem){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_VI_ID,sotietkiem.getVi_id());
+        value.put(dbstring.KEY_SOTIETKIEM_NAME,sotietkiem.getSotietkiem_name());
+        value.put(dbstring.KEY_MUCTIEU,sotietkiem.getMuctieu());
+        value.put(dbstring.KEY_SOTIENBANDAU,sotietkiem.getSotienbandau());
+        value.put(dbstring.KEY_NGAYTAO,sotietkiem.getNgaytao());
+        value.put(dbstring.KEY_GHICHU,sotietkiem.getGhichu());
+
+        try{
+            db.insert(dbstring.TABLE_SOTIETKIEM,null,value);
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
+
+    //lay danh sach sotietkiem
+    public List<_sotietkiem> laydanhsachSotietkiem(_vi vi){
+        List<_sotietkiem> lstSotietkiem = new ArrayList<_sotietkiem>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAllSotietkiem = "select * from "+dbstring.TABLE_SOTIETKIEM+" where "+dbstring.KEY_VI_ID+"="+vi.getVi_id();
+
+        Cursor c = db.rawQuery(selectAllSotietkiem,null);
+
+        if(c.moveToFirst()){
+            do{
+                _sotietkiem sotietkiem = new _sotietkiem();
+                sotietkiem.setSotietkiem_id(c.getInt(c.getColumnIndex(dbstring.KEY_SOTIETKIEM_ID)));
+                sotietkiem.setVi_id(vi.getVi_id());
+                sotietkiem.setSotietkiem_name(c.getString(c.getColumnIndex(dbstring.KEY_SOTIETKIEM_NAME)));
+                sotietkiem.setMuctieu(c.getString(c.getColumnIndex(dbstring.KEY_MUCTIEU)));
+                sotietkiem.setSotienbandau(c.getString(c.getColumnIndex(dbstring.KEY_SOTIENBANDAU)));
+                sotietkiem.setNgaytao(c.getString(c.getColumnIndex(dbstring.KEY_NGAYTAO)));
+                sotietkiem.setGhichu(c.getString(c.getColumnIndex(dbstring.KEY_GHICHU)));
+
+                lstSotietkiem.add(sotietkiem);
+            }while(c.moveToNext());
+        }
+
+        return lstSotietkiem;
+    }
+
+
+    //chinh sua sotietkiem
+    public boolean chinhsuaSotietkiem(_sotietkiem sotietkiem){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_VI_ID,sotietkiem.getVi_id());
+        value.put(dbstring.KEY_SOTIETKIEM_NAME,sotietkiem.getSotietkiem_name());
+        value.put(dbstring.KEY_MUCTIEU,sotietkiem.getMuctieu());
+        value.put(dbstring.KEY_SOTIENBANDAU,sotietkiem.getSotienbandau());
+        value.put(dbstring.KEY_NGAYTAO,sotietkiem.getNgaytao());
+        value.put(dbstring.KEY_GHICHU,sotietkiem.getGhichu());
+
+        try{
+            db.update(dbstring.TABLE_SOTIETKIEM,value,dbstring.KEY_SOTIETKIEM_ID+"=?",
+                    new String[]{Integer.toString(sotietkiem.getSotietkiem_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
+
+    //xoa sotietkiem
+    public boolean xoaSotietkiem(_sotietkiem sotietkiem){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try{
+            db.delete(dbstring.TABLE_SOTIETKIEM,dbstring.KEY_SOTIETKIEM_ID+"=?",
+                    new String[]{Integer.toString(sotietkiem.getSotietkiem_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
 
     //============================================================================================================
                                         //**********END*********
 
 
     //=============================================TABLE SONO=====================================================
+
+    //them sono
+    public boolean themSono(_sono sono){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_VI_ID,sono.getVi_id());
+        value.put(dbstring.KEY_LOAINO_ID,sono.getLoaino_id());
+        value.put(dbstring.KEY_SOTIEN,sono.getSotien());
+        value.put(dbstring.KEY_GHICHU,sono.getGhichu());
+        value.put(dbstring.KEY_NGAYGIAODICH,sono.getNgaygiaodich());
+        value.put(dbstring.KEY_DOITUONG,sono.getDoituong());
+        value.put(dbstring.KEY_DIADIEM,sono.getDiadiem());
+        value.put(dbstring.KEY_THOIHAN,sono.getThoihan());
+        value.put(dbstring.KEY_TRANGTHAI,sono.getTrangthai());
+
+        try{
+           db.insert(dbstring.TABLE_SONO,null,value);
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return false;
+    }
+
+    //lay danhsach sono
+    public List<_sono> laydanhsachSono (_vi vi){
+        List<_sono> lstSono= new ArrayList<_sono>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAllSono = "select * from "+dbstring.TABLE_SONO+" where "+dbstring.KEY_VI_ID+"="+vi.getVi_id();
+
+        Cursor c = db.rawQuery(selectAllSono,null);
+
+        if(c.moveToFirst()){
+            do{
+                _sono sono = new _sono();
+                sono.setSono_id(c.getInt(c.getColumnIndex(dbstring.KEY_SONO_ID)));
+                sono.setVi_id(vi.getVi_id());
+                sono.setLoaino_id(c.getInt(c.getColumnIndex(dbstring.KEY_LOAINO_ID)));
+                sono.setSotien(c.getString(c.getColumnIndex(dbstring.KEY_SOTIEN)));
+                sono.setGhichu(c.getString(c.getColumnIndex(dbstring.KEY_GHICHU)));
+                sono.setDoituong(c.getString(c.getColumnIndex(dbstring.KEY_DOITUONG)));
+                sono.setDiadiem(c.getString(c.getColumnIndex(dbstring.KEY_DIADIEM)));
+                sono.setNgaygiaodich(c.getString(c.getColumnIndex(dbstring.KEY_NGAYGIAODICH)));
+                sono.setThoihan(c.getString(c.getColumnIndex(dbstring.KEY_THOIHAN)));
+                sono.setTrangthai(c.getInt(c.getColumnIndex(dbstring.KEY_TRANGTHAI)));
+
+                lstSono.add(sono);
+
+
+            }while(c.moveToNext());
+        }
+
+        return  lstSono;
+    }
+
+    //chinh sua sono
+    public boolean chinhsuaSono(_sono sono){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_VI_ID,sono.getVi_id());
+        value.put(dbstring.KEY_LOAINO_ID,sono.getLoaino_id());
+        value.put(dbstring.KEY_SOTIEN,sono.getSotien());
+        value.put(dbstring.KEY_GHICHU,sono.getGhichu());
+        value.put(dbstring.KEY_NGAYGIAODICH,sono.getNgaygiaodich());
+        value.put(dbstring.KEY_DOITUONG,sono.getDoituong());
+        value.put(dbstring.KEY_DIADIEM,sono.getDiadiem());
+        value.put(dbstring.KEY_THOIHAN,sono.getThoihan());
+        value.put(dbstring.KEY_TRANGTHAI,sono.getTrangthai());
+
+        try{
+            db.update(dbstring.TABLE_SONO,value,dbstring.KEY_SONO_ID+"=?",
+                    new String[]{Integer.toString(sono.getSono_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return  false;
+    }
+
+    //xoa sono
+    public  boolean xoaSono(_sono sono){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try{
+            db.delete(dbstring.TABLE_SONO,dbstring.KEY_SONO_ID+"=?",
+                    new String[]{Integer.toString(sono.getSono_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+        return  false;
+    }
+
     //============================================================================================================
                                         //**********END*********
 
 
     //=============================================TABLE LOAINO===================================================
+
+    //Them loaino
+    public boolean themLoaino (_loaino loaino){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_LOAINO_NAME,loaino.getLoaino_name());
+
+        try{
+            db.insert(dbstring.TABLE_LOAINO,null,value);
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+
+        return false;
+    }
+
+    //lay danh sach loaino
+    public List<_loaino> laydanhsachLoaino (){
+        List<_loaino> lstLoaino = new ArrayList<_loaino>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectAllLoaino = "select * from "+dbstring.TABLE_LOAINO;
+
+        Cursor c = db.rawQuery(selectAllLoaino,null);
+
+        if(c.moveToFirst()){
+            do{
+                _loaino loaino = new _loaino();
+
+                loaino.setLoaino_id(c.getInt(c.getColumnIndex(dbstring.KEY_LOAINO_ID)));
+                loaino.setLoaino_name(c.getString(c.getColumnIndex(dbstring.KEY_LOAINO_NAME)));
+
+                lstLoaino.add(loaino);
+
+            }while(c.moveToNext());
+        }
+
+        return lstLoaino;
+    }
+
+    //chinh sua loaino
+    public boolean chinhsuaLoaino(_loaino loaino){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_LOAINO_NAME,loaino.getLoaino_name());
+
+        try{
+            db.update(dbstring.TABLE_LOAINO,value,dbstring.KEY_LOAINO_ID+"=?",
+                    new String[]{Integer.toString(loaino.getLoaino_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+
+
+        return false;
+    }
+
+    //Xoa loaino
+    public boolean xoaLoaino (_loaino loaino){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        try{
+            db.delete(dbstring.TABLE_LOAINO,dbstring.KEY_LOAINO_ID+"=?",
+                    new String[]{Integer.toString(loaino.getLoaino_id())});
+            return true;
+        }catch (Exception e){
+            Log.e(null,e.toString());
+        }
+        return false;
+    }
 
     //============================================================================================================
                                         //**********END*********

@@ -10,11 +10,16 @@ public class _sukienchitieu {
     private int category_id;
     private String sotien;
     private String ngaythuchien;
-    private boolean trangthai;
+    private int trangthai;
     private String ghichu;
 
+
+    public _sukienchitieu() {
+
+    }
+
     public _sukienchitieu(int sukienchitieu_id, int vi_id, int category_id,
-                          String sotien, String ngaythuchien, boolean trangthai, String ghichu) {
+                          String sotien, String ngaythuchien, int trangthai, String ghichu) {
         this.sukienchitieu_id = sukienchitieu_id;
         this.vi_id = vi_id;
         this.category_id = category_id;
@@ -25,7 +30,7 @@ public class _sukienchitieu {
     }
 
     public _sukienchitieu(int vi_id, int category_id,
-                          String sotien, String ngaythuchien, boolean trangthai, String ghichu) {
+                          String sotien, String ngaythuchien, int trangthai, String ghichu) {
         //this.sukienchitieu_id = sukienchitieu_id;
         this.vi_id = vi_id;
         this.category_id = category_id;
@@ -75,11 +80,11 @@ public class _sukienchitieu {
         this.sukienchitieu_id = sukienchitieu_id;
     }
 
-    public boolean isTrangthai() {
+    public int getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(boolean trangthai) {
+    public void setTrangthai(int trangthai) {
         this.trangthai = trangthai;
     }
 

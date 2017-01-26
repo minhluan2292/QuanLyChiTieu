@@ -1,5 +1,6 @@
 package com.example.nhatlam.nhomnm_quanlychitieu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -20,7 +21,9 @@ import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    databasehelper db;
+    private databasehelper db;
+    public static _user user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,16 +48,26 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+
+
 
         TextView txtdisplay = (TextView)findViewById(R.id.txtDisplay);
+        TextView txtuser;
 
         db = new databasehelper(getApplicationContext());
-        if(db.insertUser()==true){
-            _user u = db.getUser();
-            txtdisplay.setText(u.getUsername());
-        }else {
-            txtdisplay.setText("Fail!");
+        Intent i = getIntent();
+        if(i.getExtras().getSerializable("user")!=null){
+            user =  (_user)i.getExtras().getSerializable("user");
         }
+
+
+
+
+        txtuser = (TextView) header.findViewById(R.id.txtUser);
+
+        txtuser.setText(user.getUsername());
+
     }
 
     @Override
@@ -106,7 +119,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
+            user = db.dangxuatUser(user);
+            Intent i = new Intent(this.getApplicationContext(),DangNhapActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,10 +1,12 @@
 package com.example.nhatlam.nhomnm_quanlychitieu.Models;
 
+import java.io.Serializable;
+
 /**
  * Created by NHATLAM on 1/18/2017.
  */
 
-public class _user {
+public class _user implements Serializable {
     private int user_id;
     private String username;
     private String password;

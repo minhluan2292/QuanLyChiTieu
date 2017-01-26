@@ -18,6 +18,9 @@ import com.example.nhatlam.nhomnm_quanlychitieu.Models._sukienchitieu;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._vi;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +106,8 @@ public class databasehelper extends SQLiteOpenHelper {
     //===============================USER TABLE==========================================================================
     //đăng ký
     public boolean dangkyUser(_user user){
+        //mã hóa password
+        user.setPassword(encryptMD5(user.getPassword()));
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues value = new ContentValues();
         value.put(dbstring.KEY_USERNAME,user.getUsername());
@@ -110,8 +115,10 @@ public class databasehelper extends SQLiteOpenHelper {
         value.put(dbstring.KEY_SDT,user.getSdt());
         value.put(dbstring.KEY_REMEMBER,user.getRemember());
         try {
-            db.insert(dbstring.TABLE_USER, null, value);
-            return true;
+            if(checkTrung(dbstring.TABLE_USER,dbstring.KEY_USERNAME,user.getUsername())==false) {
+                db.insert(dbstring.TABLE_USER, null, value);
+                return true;
+            }
         }
         catch (Exception e){
 
@@ -121,25 +128,29 @@ public class databasehelper extends SQLiteOpenHelper {
 
 
     //đăng nhập
-    public _user dangnhapUser(_user user,int remember){
+    public _user dangnhapUser(_user user){
         SQLiteDatabase db = this.getReadableDatabase();
+
+        //mã hóa md5
+        user.setPassword(encryptMD5(user.getPassword()));
+
 
         String selectUser = "select * from "+dbstring.TABLE_USER+" where "+
                 dbstring.KEY_USERNAME+"='"+user.getUsername()+"' and "+
                 dbstring.KEY_PASSWORD+"='"+user.getPassword()+"'";
 
         Cursor c =db.rawQuery(selectUser,null);
-        if (c != null)
-            c.moveToFirst();
-        else
+        if (c.moveToFirst()){
+            //set user if != null
+            user.setUser_id(c.getInt(c.getColumnIndex(dbstring.KEY_USER_ID)));
+            user.setSdt(c.getString(c.getColumnIndex(dbstring.KEY_SDT)));
+            if(user.getRemember()==1)
+                setRemember(user,1);
+            user.setRemember(c.getInt(c.getColumnIndex(dbstring.KEY_REMEMBER)));
+        } else
             return null;
 
-        //set user if != null
-        user.setUser_id(c.getInt(c.getColumnIndex(dbstring.KEY_USER_ID)));
-        user.setSdt(c.getString(c.getColumnIndex(dbstring.KEY_SDT)));
-        if(remember==1)
-            setRemember(user,1);
-        user.setRemember(c.getInt(c.getColumnIndex(dbstring.KEY_REMEMBER)));
+
         return user;
     }
 
@@ -151,7 +162,7 @@ public class databasehelper extends SQLiteOpenHelper {
         try {
             db.update(dbstring.TABLE_USER,value,dbstring.KEY_USER_ID+"="+user.getUser_id(),null);
         } catch (Exception e){
-
+            Log.e(null,e.toString());
         }
 
     }
@@ -163,18 +174,51 @@ public class databasehelper extends SQLiteOpenHelper {
         String selectUserRemember="select * from "+dbstring.TABLE_USER+" where "+dbstring.KEY_REMEMBER+"=1";
 
         Cursor c =db.rawQuery(selectUserRemember,null);
-        if(c!=null)
-            c.moveToFirst();
-        else
+        if(c.moveToFirst()){
+            user.setUser_id(c.getInt(c.getColumnIndex(dbstring.KEY_USER_ID)));
+            user.setUsername(c.getString(c.getColumnIndex(dbstring.KEY_USERNAME)));
+            user.setPassword(c.getString(c.getColumnIndex(dbstring.KEY_PASSWORD)));
+            user.setSdt(c.getString(c.getColumnIndex(dbstring.KEY_SDT)));
+            user.setRemember(c.getInt(c.getColumnIndex(dbstring.KEY_REMEMBER)));
+        } else
             return null;
 
-        user.setUser_id(c.getInt(c.getColumnIndex(dbstring.KEY_USER_ID)));
-        user.setUsername(c.getString(c.getColumnIndex(dbstring.KEY_USERNAME)));
-        user.setPassword(c.getString(c.getColumnIndex(dbstring.KEY_PASSWORD)));
-        user.setSdt(c.getString(c.getColumnIndex(dbstring.KEY_SDT)));
-        user.setRemember(c.getInt(c.getColumnIndex(dbstring.KEY_REMEMBER)));
-
         return user;
+    }
+
+    public _user dangxuatUser(_user user){
+        setRemember(user,0);
+        return null;
+    }
+
+    public List<_user> laydanhsachUser(){
+        List<_user> lstuser = new ArrayList<_user>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String select = "select * from "+dbstring.TABLE_USER;
+        Cursor c = db.rawQuery(select,null);
+        if(c.moveToFirst()){
+            do{
+                _user user = new _user();
+                user.setUser_id(c.getInt(c.getColumnIndex(dbstring.KEY_USER_ID)));
+                user.setRemember(c.getInt(c.getColumnIndex(dbstring.KEY_REMEMBER)));
+                lstuser.add(user);
+            }while(c.moveToNext());
+        }
+        return lstuser;
+    }
+
+    public void RemoveAllUser(){
+        List<_user> lstuser=laydanhsachUser();
+        SQLiteDatabase db =this.getWritableDatabase();
+
+        for(int i=0;i<lstuser.size();i++) {
+            try {
+                db.delete(dbstring.TABLE_USER, dbstring.KEY_USER_ID + "=?",
+                        new String[]{Integer.toString(lstuser.get(i).getUser_id())});
+            } catch (Exception e) {
+
+            }
+        }
     }
 
     //============================================================================================================
@@ -267,8 +311,10 @@ public class databasehelper extends SQLiteOpenHelper {
         value.put(dbstring.KEY_LOAIVI_NAME,loaivi.getLoaivi_name());
 
         try{
-            db.insert(dbstring.TABLE_LOAIVI,null,value);
-            return true;
+            if(checkTrung(dbstring.TABLE_LOAIVI,dbstring.KEY_LOAIVI_NAME,loaivi.getLoaivi_name())==false) {
+                db.insert(dbstring.TABLE_LOAIVI, null, value);
+                return true;
+            }
         }catch (Exception e){
 
         }
@@ -336,8 +382,10 @@ public class databasehelper extends SQLiteOpenHelper {
         value.put(dbstring.KEY_TIGIADOLA,donvitien.getTigiadola());
 
         try{
-            db.insert(dbstring.TABLE_DONVITIEN,null,value);
-            return true;
+            if(checkTrung(dbstring.TABLE_DONVITIEN,dbstring.KEY_DONVITIEN_NAME,donvitien.getDonvitien_name())==false) {
+                db.insert(dbstring.TABLE_DONVITIEN, null, value);
+                return true;
+            }
         }catch(Exception e){}
         return false;
     }
@@ -406,8 +454,10 @@ public class databasehelper extends SQLiteOpenHelper {
         value.put(dbstring.KEY_CATEGORY_NAME,category.getCategory_name());
         value.put(dbstring.KEY_PARENT,category.getParent());
         try{
-            db.insert(dbstring.TABLE_CATEGORY,null,value);
-            return true;
+            if(checkTrung(dbstring.TABLE_CATEGORY,dbstring.KEY_CATEGORY_NAME,category.getCategory_name())==false) {
+                db.insert(dbstring.TABLE_CATEGORY, null, value);
+                return true;
+            }
         }catch (Exception e){
             Log.e(null,e.toString());
         }
@@ -769,7 +819,7 @@ public class databasehelper extends SQLiteOpenHelper {
         value.put(dbstring.KEY_TRANGTHAI,sono.getTrangthai());
 
         try{
-           db.insert(dbstring.TABLE_SONO,null,value);
+            db.insert(dbstring.TABLE_SONO,null,value);
             return true;
         }catch (Exception e){
             Log.e(null,e.toString());
@@ -865,8 +915,10 @@ public class databasehelper extends SQLiteOpenHelper {
         value.put(dbstring.KEY_LOAINO_NAME,loaino.getLoaino_name());
 
         try{
-            db.insert(dbstring.TABLE_LOAINO,null,value);
-            return true;
+            if(checkTrung(dbstring.TABLE_LOAINO,dbstring.KEY_LOAINO_NAME,loaino.getLoaino_name())==false) {
+                db.insert(dbstring.TABLE_LOAINO, null, value);
+                return true;
+            }
         }catch (Exception e){
             Log.e(null,e.toString());
         }
@@ -935,4 +987,31 @@ public class databasehelper extends SQLiteOpenHelper {
     //============================================================================================================
                                         //**********END*********
 
+
+    public boolean checkTrung(String table, String keyid, String value){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String select = "select * from "+table+" where "+keyid+"='"+value+"'";
+        Cursor c = db.rawQuery(select,null);
+        if(c.getCount()>0){
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public static String encryptMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            String hashtext = number.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

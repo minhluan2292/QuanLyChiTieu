@@ -1,4 +1,4 @@
-package com.example.nhatlam.nhomnm_quanlychitieu;
+package com.example.nhatlam.nhomnm_quanlychitieu.Fragments;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,10 +7,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 /**
- * Created by NHATLAM on 1/26/2017.
+ * Created by NHATLAM on 2/2/2017.
  */
 
-public class ViewDNDKAdapter extends FragmentPagerAdapter {
+public class fragmentAdapter extends FragmentPagerAdapter {
     ArrayList<Fragment> lstFragment= new ArrayList<>();
     ArrayList<String> lstTitle= new ArrayList<>();
 
@@ -19,7 +19,7 @@ public class ViewDNDKAdapter extends FragmentPagerAdapter {
         this.lstTitle.add(title);
     }
 
-    public ViewDNDKAdapter(FragmentManager fm) {
+    public fragmentAdapter(FragmentManager fm) {
         super(fm);
     }
 

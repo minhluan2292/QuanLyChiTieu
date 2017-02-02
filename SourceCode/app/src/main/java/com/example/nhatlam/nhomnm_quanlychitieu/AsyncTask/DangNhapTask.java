@@ -1,4 +1,4 @@
-package com.example.nhatlam.nhomnm_quanlychitieu;
+package com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
+import com.example.nhatlam.nhomnm_quanlychitieu.Activities.MainActivity;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 
 /**

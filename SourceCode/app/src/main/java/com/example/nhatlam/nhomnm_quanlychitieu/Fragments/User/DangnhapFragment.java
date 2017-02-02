@@ -1,4 +1,4 @@
-package com.example.nhatlam.nhomnm_quanlychitieu;
+package com.example.nhatlam.nhomnm_quanlychitieu.Fragments.User;
 
 
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.DangNhapTask;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
+import com.example.nhatlam.nhomnm_quanlychitieu.R;
 
 
 /**

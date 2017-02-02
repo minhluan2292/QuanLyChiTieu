@@ -1,10 +1,12 @@
-package com.example.nhatlam.nhomnm_quanlychitieu;
+package com.example.nhatlam.nhomnm_quanlychitieu.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,16 +15,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.CatagoryFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
+import com.example.nhatlam.nhomnm_quanlychitieu.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private databasehelper db;
     public static _user user;
+    FrameLayout layoutContain;
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +58,13 @@ public class MainActivity extends AppCompatActivity
         View header=navigationView.getHeaderView(0);
 
 
+        layoutContain = (FrameLayout) findViewById(R.id.content_main);
+        fragmentManager = getSupportFragmentManager();
 
-        TextView txtdisplay = (TextView)findViewById(R.id.txtDisplay);
+        //TextView txtdisplay = (TextView)findViewById(R.id.txtDisplay);
         TextView txtuser;
+
+
 
         db = new databasehelper(getApplicationContext());
         Intent i = getIntent();
@@ -108,8 +119,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_Catagory) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            CatagoryFragment fragment = new CatagoryFragment();
+            fragmentTransaction.add(layoutContain.getId(),fragment,null);
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

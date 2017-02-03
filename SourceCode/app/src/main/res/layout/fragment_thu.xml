@@ -35,6 +35,12 @@
             android:layout_marginStart="10dp"
             android:layout_height="50dp"
             android:layout_width="50dp" />
+        <Button
+            android:id="@+id/btnCancelThu"
+            android:layout_weight="1"
+            android:background="@drawable/ball_stop"
+            android:layout_width="45dp"
+            android:layout_height="45dp" />
 
     </LinearLayout>
 
@@ -64,14 +70,15 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="15dp">
 
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="15dp"
-            android:id="@+id/lstKhoanThu"
-            android:textSize="24dp"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/lstKhoanThu">
+
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
 </LinearLayout>

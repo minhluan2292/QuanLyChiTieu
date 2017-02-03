@@ -2,6 +2,7 @@ package com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
@@ -37,10 +38,10 @@ public class AddCatagoryTask extends AsyncTask<Void, Void, Boolean> {
             _category category= new _category();
             category.setCategory_name(value);
             category.setParent(index);
-
             return db.themCategory(category);
 
-        }else if(tablename.equals(dbstring.TABLE_LOAINO)){
+        }else if(tablename.equals(dbstring.TABLE_LOAINO)==true){
+            Log.d("Loaino","Loai nợ");
             _loaino loaino = new _loaino();
             loaino.setLoaino_name(value);
             return db.themLoaino(loaino);

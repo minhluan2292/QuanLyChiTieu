@@ -465,10 +465,10 @@ public class databasehelper extends SQLiteOpenHelper {
     }
 
     //lay danh sach category
-    public List<_category> laydanhsachCategory(){
+    public List<_category> laydanhsachCategory(int parent){
         List<_category> lstCategory = new ArrayList<_category>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectAllCategory = "select * from "+dbstring.TABLE_CATEGORY;
+        String selectAllCategory = "select * from "+dbstring.TABLE_CATEGORY+" where "+dbstring.KEY_PARENT+"="+parent;
         Cursor c = db.rawQuery(selectAllCategory,null);
 
         if(c.moveToFirst()){

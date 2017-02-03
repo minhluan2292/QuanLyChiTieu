@@ -3,6 +3,8 @@ package com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +13,25 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddCatagoryTask;
+import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.dbstring;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._category;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ThuFragment extends Fragment {
-
-
+    RecyclerView rView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+    databasehelper db;
+    List<_category> lst;
+    List<CategoryProvider> lstCate;
     public ThuFragment() {
         // Required empty public constructor
     }
@@ -39,6 +50,35 @@ public class ThuFragment extends Fragment {
 
         Button btnAdd = (Button)v.findViewById(R.id.btnAddNewThu);
         Button btnShowAdd = (Button)v.findViewById(R.id.btnShowContainThu);
+
+
+        rView = (RecyclerView)v.findViewById(R.id.lstKhoanThu);
+
+
+
+        db = new databasehelper(getActivity().getApplicationContext());
+        lst= db.laydanhsachCategory(1);
+        lstCate = new ArrayList<CategoryProvider>();
+        for(int i=0;i<lst.size();i++){
+            CategoryProvider cateprovider = new CategoryProvider(R.drawable.thu,lst.get(i).getCategory_name());
+            lstCate.add(cateprovider);
+        }
+        adapter = new CategoryRecylerAdapter(getActivity().getApplicationContext(),lstCate);
+        rView.setHasFixedSize(true);
+
+        layoutManager= new LinearLayoutManager(getActivity());
+        rView.setLayoutManager(layoutManager);
+        rView.setAdapter(adapter);
+
+        Button btnCancel = (Button) v.findViewById(R.id.btnCancelThu);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vContain.setVisibility(View.GONE);
+                vButtonShow.setVisibility(View.VISIBLE);
+            }
+        });
+
 
         btnShowAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +99,12 @@ public class ThuFragment extends Fragment {
                     task.execute();
                     vContain.setVisibility(View.GONE);
                     vButtonShow.setVisibility(View.VISIBLE);
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    refreshData();
                 }else{
                     Toast.makeText(getActivity().getApplicationContext(),"Tên danh mục không bỏ trống!",Toast.LENGTH_SHORT).show();
                 }
@@ -68,4 +114,19 @@ public class ThuFragment extends Fragment {
         return v;
     }
 
+    public void refreshData(){
+        lst= db.laydanhsachCategory(1);
+        lstCate = new ArrayList<CategoryProvider>();
+        for(int i=0;i<lst.size();i++){
+            CategoryProvider cateprovider = new CategoryProvider(R.drawable.thu,lst.get(i).getCategory_name());
+            lstCate.add(cateprovider);
+        }
+
+        adapter = new CategoryRecylerAdapter(getActivity().getApplicationContext(),lstCate);
+        rView.setAdapter(adapter);
+
+    }
+
+
 }
+

@@ -37,7 +37,6 @@ public class CatagoryFragment extends Fragment {
         adapter.addFragment(new ChiTieuFragment(),"Chi tiêu");
         adapter.addFragment(new ThuFragment(),"Khoản thu");
         adapter.addFragment(new NoFragment(),"Nợ");
-
         vPaper.setAdapter(adapter);
         tabLayout.setupWithViewPager(vPaper);
 

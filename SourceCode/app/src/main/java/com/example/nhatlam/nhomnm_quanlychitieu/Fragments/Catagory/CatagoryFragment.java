@@ -4,6 +4,7 @@ package com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.fragmentAdapter;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +22,10 @@ import com.example.nhatlam.nhomnm_quanlychitieu.R;
 public class CatagoryFragment extends Fragment {
     ViewPager vPaper;
     TabLayout tabLayout;
+    LayoutInflater inflater;
+    ViewGroup container;
+    View v;
+    FragmentManager fragmentManager;
 
     public CatagoryFragment() {
         // Required empty public constructor
@@ -28,20 +35,50 @@ public class CatagoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        this.inflater=inflater;
+        this.container=container;
+
+
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_catagory, container, false);
+        v = inflater.inflate(R.layout.fragment_catagory, container, false);
         tabLayout = (TabLayout) v.findViewById(R.id.tabCatagory);
         vPaper = (ViewPager)v.findViewById(R.id.viewPaperCatagory);
 
-        fragmentAdapter adapter = new fragmentAdapter(getActivity().getSupportFragmentManager());
-        adapter.addFragment(new ChiTieuFragment(),"Chi tiêu");
-        adapter.addFragment(new ThuFragment(),"Khoản thu");
-        adapter.addFragment(new NoFragment(),"Nợ");
+        ArrayList<Fragment> lstFragment= new ArrayList<>();
+        ArrayList<String> lstTitle= new ArrayList<>();
+
+
+        lstFragment.add(new ChiTieuFragment());
+        lstTitle.add("Chi Tiêu");
+
+        lstFragment.add(new ThuFragment());
+        lstTitle.add("Khoản thu");
+        lstFragment.add(new NoFragment());
+        lstTitle.add("Nợ");
+        final fragmentAdapter adapter = new fragmentAdapter(getActivity().getSupportFragmentManager(),lstFragment,lstTitle);
+        fragmentManager = getActivity().getSupportFragmentManager();
         vPaper.setAdapter(adapter);
         tabLayout.setupWithViewPager(vPaper);
+        vPaper.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
 
         return v;
     }
-
 
 }

@@ -23,6 +23,13 @@ public class fragmentAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
+    public fragmentAdapter(FragmentManager fm, ArrayList<Fragment> lstFragment, ArrayList<String> lstTitle) {
+        super(fm);
+        this.lstFragment = lstFragment;
+        this.lstTitle = lstTitle;
+
+    }
+
     @Override
     public Fragment getItem(int position) {
         return lstFragment.get(position);
@@ -31,6 +38,11 @@ public class fragmentAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return lstFragment.size();
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     @Override

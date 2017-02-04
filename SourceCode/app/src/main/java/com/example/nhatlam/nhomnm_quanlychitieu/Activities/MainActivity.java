@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity
     FrameLayout layoutContain;
     FragmentManager fragmentManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,19 +118,28 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         int id = item.getItemId();
 
+
+        /*
+        Fragment f = getSupportFragmentManager().findFragmentById(layoutContain.getId());
+        if(f!=null) {
+            fragmentTransaction.remove(f);
+            f.onDestroy();
+        }
+        */
+
+
         if (id == R.id.nav_Catagory) {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             CatagoryFragment fragment = new CatagoryFragment();
-            fragmentTransaction.add(layoutContain.getId(),fragment,null);
+            fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_SuKienChiTieu) {
 
         } else if (id == R.id.nav_Vi) {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             QLViFragment fragment = new QLViFragment();
-            fragmentTransaction.add(layoutContain.getId(),fragment,null);
+            fragmentTransaction.replace(layoutContain.getId(), fragment).addToBackStack(null);
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_manage) {

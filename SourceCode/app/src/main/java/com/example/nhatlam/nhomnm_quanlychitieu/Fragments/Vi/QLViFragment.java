@@ -17,6 +17,7 @@ import com.example.nhatlam.nhomnm_quanlychitieu.R;
 public class QLViFragment extends Fragment {
     ViewPager vPaper;
     TabLayout tabLayout;
+    fragmentAdapter adapter;
 
     public QLViFragment() {
         // Required empty public constructor
@@ -31,12 +32,29 @@ public class QLViFragment extends Fragment {
         tabLayout = (TabLayout) v.findViewById(R.id.tabQLVi);
         vPaper = (ViewPager)v.findViewById(R.id.viewPaperQLVi);
 
-        fragmentAdapter adapter = new fragmentAdapter(getActivity().getSupportFragmentManager());
+        adapter = new fragmentAdapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(new ViFragment(),"Ví");
         adapter.addFragment(new LoaiViFragment(),"Loại Ví");
 
         vPaper.setAdapter(adapter);
         tabLayout.setupWithViewPager(vPaper);
+
+        vPaper.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         return v;
     }

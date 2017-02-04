@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,10 @@ public class CatagoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Log.d(null,"Oncreated");
         this.inflater=inflater;
         this.container=container;
+        fragmentManager = getChildFragmentManager();
 
 
         // Inflate the layout for this fragment
@@ -56,10 +59,11 @@ public class CatagoryFragment extends Fragment {
         lstTitle.add("Khoản thu");
         lstFragment.add(new NoFragment());
         lstTitle.add("Nợ");
-        final fragmentAdapter adapter = new fragmentAdapter(getActivity().getSupportFragmentManager(),lstFragment,lstTitle);
-        fragmentManager = getActivity().getSupportFragmentManager();
+        final fragmentAdapter adapter = new fragmentAdapter(fragmentManager,lstFragment,lstTitle);
+
         vPaper.setAdapter(adapter);
         tabLayout.setupWithViewPager(vPaper);
+        Log.d(null,"setAdapter");
         vPaper.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

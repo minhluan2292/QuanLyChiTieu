@@ -3,6 +3,7 @@ package com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ public class QLViFragment extends Fragment {
     ViewPager vPaper;
     TabLayout tabLayout;
     fragmentAdapter adapter;
+    FragmentManager fragmentManager;
 
     public QLViFragment() {
         // Required empty public constructor
@@ -31,8 +33,8 @@ public class QLViFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_quanlyvi, container, false);
         tabLayout = (TabLayout) v.findViewById(R.id.tabQLVi);
         vPaper = (ViewPager)v.findViewById(R.id.viewPaperQLVi);
-
-        adapter = new fragmentAdapter(getActivity().getSupportFragmentManager());
+        fragmentManager = getChildFragmentManager();
+        adapter = new fragmentAdapter(fragmentManager);
         adapter.addFragment(new ViFragment(),"Ví");
         adapter.addFragment(new LoaiViFragment(),"Loại Ví");
 

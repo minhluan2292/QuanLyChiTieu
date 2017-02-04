@@ -19,12 +19,14 @@ import java.util.List;
 
 public class CategoryRecylerAdapter extends RecyclerView.Adapter<CategoryRecylerAdapter.RecyclerViewHolder> {
     private List<CategoryProvider> arrayList = new ArrayList<CategoryProvider>();
-    static Context con;
-    LayoutInflater inflater;
+    static Context context;
+    static LayoutInflater inflater;
+
     public CategoryRecylerAdapter(Context context,List<CategoryProvider> arrayList) {
-        this.con=context;
+        this.context=context;
         inflater = LayoutInflater.from(context);
         this.arrayList = arrayList;
+
     }
 
     @Override
@@ -47,7 +49,7 @@ public class CategoryRecylerAdapter extends RecyclerView.Adapter<CategoryRecyler
     }
 
 
-    public static class RecyclerViewHolder extends RecyclerView.ViewHolder{
+    public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img;
         TextView txt;
@@ -58,5 +60,6 @@ public class CategoryRecylerAdapter extends RecyclerView.Adapter<CategoryRecyler
             img=(ImageView)itemView.findViewById(R.id.imgCategory);
             txt=(TextView) itemView.findViewById(R.id.txtCategoryName);
         }
+
     }
 }

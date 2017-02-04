@@ -5,6 +5,7 @@ package com.example.nhatlam.nhomnm_quanlychitieu.Database;
  */
 
 public class dbstring {
+
     //table name
     public static final String TABLE_USER="user";
     public static final String TABLE_VI="vi";

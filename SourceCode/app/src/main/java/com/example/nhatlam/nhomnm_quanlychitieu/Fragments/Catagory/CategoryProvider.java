@@ -5,10 +5,21 @@ package com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory;
  */
 
 public class CategoryProvider {
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private int img_res;
     private String name;
 
-    public CategoryProvider(int img_res, String name) {
+    public CategoryProvider(int id,int img_res, String name) {
+        this.id = id;
         this.img_res = img_res;
         this.name = name;
     }

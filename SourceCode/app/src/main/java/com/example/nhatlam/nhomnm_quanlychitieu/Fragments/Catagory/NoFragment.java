@@ -29,10 +29,16 @@ public class NoFragment extends Fragment {
     RecyclerView rView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    databasehelper db;
+    static databasehelper db;
     List<_loaino> lst;
     List<CategoryProvider> lstCate;
-
+    static View v;
+    static View vContain;
+    static View vButtonShow;
+    static View vbox;
+    static EditText txtEdit;
+    static EditText txtAdd;
+    static int editPosition;
     public NoFragment() {
         // Required empty public constructor
     }
@@ -42,11 +48,18 @@ public class NoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_no, container, false);
-        final EditText txtNoName = (EditText)v.findViewById(R.id.txtNoName);
+        v=inflater.inflate(R.layout.fragment_no, container, false);
 
-        final View vContain = v.findViewById(R.id.layoutAddLoaiNo);
-        final View vButtonShow = v.findViewById(R.id.layoutbtnAddLoaiNo);
+        txtAdd = (EditText)v.findViewById(R.id.txtNoName);
+        txtEdit = (EditText)v.findViewById(R.id.editnameNo);
+        vContain = v.findViewById(R.id.layoutAddLoaiNo);
+        vButtonShow = v.findViewById(R.id.layoutbtnAddLoaiNo);
+        vbox = v.findViewById(R.id.NoEditBox);
+
+        Button btnAcceptEdit=(Button) v.findViewById(R.id.btnEditNo);
+        Button btnCancelEdit = (Button)v.findViewById(R.id.btnCancelEditNo);
+        Button btnDelete = (Button)v.findViewById(R.id.btnDeleteNo);
+
 
         Button btnAdd = (Button)v.findViewById(R.id.btnAddNewLoaiNo);
         Button btnShowAdd = (Button)v.findViewById(R.id.btnShowContainLoaiNo);
@@ -58,7 +71,7 @@ public class NoFragment extends Fragment {
         lst= db.laydanhsachLoaino();
         lstCate = new ArrayList<CategoryProvider>();
         for(int i=0;i<lst.size();i++){
-            CategoryProvider cateprovider = new CategoryProvider(R.drawable.loaino,lst.get(i).getLoaino_name());
+            CategoryProvider cateprovider = new CategoryProvider(lst.get(i).getLoaino_id(),R.drawable.loaino,lst.get(i).getLoaino_name());
             lstCate.add(cateprovider);
         }
 
@@ -70,6 +83,57 @@ public class NoFragment extends Fragment {
         rView.setAdapter(adapter);
 
         Button btnCancel = (Button) v.findViewById(R.id.btnCancelNo);
+
+
+        btnAcceptEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _loaino loaino = new _loaino();
+                loaino.setLoaino_id(editPosition);
+                loaino.setLoaino_name(txtEdit.getText().toString());
+                if(db.chinhsuaLoaino(loaino)==true){
+                    Toast.makeText(getActivity().getApplicationContext(),"Chỉnh sửa thành công!",Toast.LENGTH_SHORT);
+                    txtEdit.setText("");
+                    vContain.setVisibility(View.GONE);
+                    vButtonShow.setVisibility(View.VISIBLE);
+                    vbox.setVisibility(View.GONE);
+                    refreshData();
+                }else{
+                    Toast.makeText(getActivity().getApplicationContext(),"Chỉnh sửa thất bại!",Toast.LENGTH_SHORT);
+                }
+            }
+        });
+
+        btnCancelEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txtEdit.setText("");
+                vContain.setVisibility(View.GONE);
+                vButtonShow.setVisibility(View.VISIBLE);
+                vbox.setVisibility(View.GONE);
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _loaino loaino = new _loaino();
+                loaino.setLoaino_id(editPosition);
+                if(db.xoaLoaino(loaino)==true){
+                    Toast.makeText(getActivity().getApplicationContext(),"Xóa thành công!",Toast.LENGTH_SHORT);
+                    txtEdit.setText("");
+                    vContain.setVisibility(View.GONE);
+                    vButtonShow.setVisibility(View.VISIBLE);
+                    vbox.setVisibility(View.GONE);
+                    refreshData();
+                }else{
+                    Toast.makeText(getActivity().getApplicationContext(),"Xóa thất bại!",Toast.LENGTH_SHORT);
+                }
+            }
+        });
+
+
+
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,19 +150,21 @@ public class NoFragment extends Fragment {
             public void onClick(View v) {
                 vContain.setVisibility(View.VISIBLE);
                 vButtonShow.setVisibility(View.GONE);
+                vbox.setVisibility(View.GONE);
             }
         });
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String value = txtNoName.getText().toString();
+                String value = txtAdd.getText().toString();
                 String subval = value.replaceAll("\\s","");
                 AddCatagoryTask task;
                 if(subval.equals("")==false) {
                     task = new AddCatagoryTask(getActivity().getApplicationContext(), dbstring.TABLE_LOAINO, value, 0);
                     task.execute();
                     vContain.setVisibility(View.GONE);
+                    vbox.setVisibility(View.GONE);
                     vButtonShow.setVisibility(View.VISIBLE);
                     try {
                         Thread.sleep(500);
@@ -111,6 +177,34 @@ public class NoFragment extends Fragment {
                 }
             }
         });
+
+
+
+        rView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity().getApplicationContext(),
+                rView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                vbox.setVisibility(View.VISIBLE);
+                vContain.setVisibility(View.GONE);
+                vButtonShow.setVisibility(View.GONE);
+
+                editPosition=lstCate.get(position).getId();
+
+                EditText edit = (EditText)v.findViewById(R.id.editnameNo);
+                CategoryProvider provider = lstCate.get(position);
+                edit.setText(provider.getName());
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
+
+
+
+
+
         return v;
     }
 
@@ -119,7 +213,7 @@ public class NoFragment extends Fragment {
         lst= db.laydanhsachLoaino();
         lstCate = new ArrayList<CategoryProvider>();
         for(int i=0;i<lst.size();i++){
-            CategoryProvider cateprovider = new CategoryProvider(R.drawable.loaino,lst.get(i).getLoaino_name());
+            CategoryProvider cateprovider = new CategoryProvider(lst.get(i).getLoaino_id(),R.drawable.loaino,lst.get(i).getLoaino_name());
             lstCate.add(cateprovider);
         }
 

@@ -45,6 +45,65 @@
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NoEditBox"
+        android:layout_margin="15dp"
+        android:background="#fffb80"
+        android:visibility="gone">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            android:id="@+id/editnameNo"
+            android:background="@drawable/border_style_1"
+            android:paddingStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="Thay đổi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditNo"
+                android:layout_weight="1"
+                android:background="@android:color/holo_green_light"
+                android:drawableLeft="@drawable/ic_action_accept"
+                android:textSize="12sp" />
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnCancelEditNo"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:background="#ff0000"
+                android:drawableLeft="@drawable/ic_action_cancel" />
+
+            <Button
+                android:text="Xóa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDeleteNo"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:background="@android:color/holo_orange_dark"
+                android:drawableLeft="@drawable/ic_action_discard" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

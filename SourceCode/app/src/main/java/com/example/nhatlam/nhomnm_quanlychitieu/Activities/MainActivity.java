@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     FrameLayout layoutContain;
     FragmentManager fragmentManager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

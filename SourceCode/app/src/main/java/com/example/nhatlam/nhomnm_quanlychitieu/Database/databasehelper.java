@@ -488,14 +488,10 @@ public class databasehelper extends SQLiteOpenHelper {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues value = new ContentValues();
         value.put(dbstring.KEY_CATEGORY_NAME,category.getCategory_name());
-        if(category.getParent()>0)
-            value.put(dbstring.KEY_PARENT,category.getParent());
-        else
-            value.put(dbstring.KEY_PARENT,"");
-
         try{
             db.update(dbstring.TABLE_CATEGORY,value,dbstring.KEY_CATEGORY_ID+"=?",
                     new String[]{Integer.toString(category.getCategory_id())});
+            Log.d(null,"Edited");
             return true;
         }catch (Exception e){
             Log.e(null,e.toString());

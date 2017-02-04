@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.ChiTieuFragment"
+    android:id="@+id/txtaaaaaaa"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@android:color/transparent"
+        android:weightSum="1"
+        android:visibility="gone"
+        android:id="@+id/layoutAddChiTieu">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/txtChitieuName"
+            android:hint="Tên chi tiêu"
+            android:background="@drawable/border_style_1"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnAddNewChiTieu"
+            android:background="@drawable/btn_add"
+            android:scaleType="fitStart"
+            android:layout_marginStart="10dp"
+            android:layout_height="50dp"
+            android:layout_width="50dp" />
+
+        <Button
+            android:id="@+id/btnCancelChiTieu"
+            android:layout_weight="1"
+            android:background="@drawable/ball_stop"
+            android:layout_width="45dp"
+            android:layout_height="45dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/layoutbtnAddChiTieu">
+
+        <Button
+            android:text="Thêm mới mục chi tiêu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnShowContainThemSuKien"
+            android:layout_weight="1"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:background="@android:color/holo_blue_dark"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical"
+            android:paddingStart="5dp"
+            android:textSize="24sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lstSuKienChiTieu">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>

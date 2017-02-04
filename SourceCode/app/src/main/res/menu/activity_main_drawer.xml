@@ -7,9 +7,9 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Quản lý danh mục" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_SuKienChiTieu"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Sự Kiện Chi Tiêu" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"

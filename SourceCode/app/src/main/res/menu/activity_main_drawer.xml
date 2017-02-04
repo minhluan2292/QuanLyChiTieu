@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
@@ -11,9 +12,9 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Sự Kiện Chi Tiêu" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_Vi"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Quản lý Ví" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.CatagoryFragment;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi.QLViFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
 
@@ -125,9 +126,13 @@ public class MainActivity extends AppCompatActivity
             CatagoryFragment fragment = new CatagoryFragment();
             fragmentTransaction.add(layoutContain.getId(),fragment,null);
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_SuKienChiTieu) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_Vi) {
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            QLViFragment fragment = new QLViFragment();
+            fragmentTransaction.add(layoutContain.getId(),fragment,null);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_manage) {
 

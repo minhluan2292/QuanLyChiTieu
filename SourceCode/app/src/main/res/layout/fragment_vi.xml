@@ -4,55 +4,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi.ViFragment"
-    android:orientation="vertical"
-    android:id="@+id/txtaaaaaaa">
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="@android:color/transparent"
-        android:weightSum="1"
-        android:visibility="gone"
-        android:id="@+id/layoutAddChiTieu">
+        android:id="@+id/layoutAddVi"
+        android:visibility="gone">
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/txtViName"
-            android:hint="Tên chi tiêu"
+            android:hint="Tên Ví"
             android:background="@drawable/border_style_1"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:paddingStart="10dp"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textSize="24sp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
 
-        <Button
-            android:id="@+id/btnAddNewVi"
-            android:background="@drawable/btn_add"
-            android:scaleType="fitStart"
-            android:layout_marginStart="10dp"
-            android:layout_height="50dp"
-            android:layout_width="50dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/txtViSoTien"
+            android:hint="Số tiền"
+            android:background="@drawable/border_style_1"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textSize="24sp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
 
-        <Button
-            android:id="@+id/btnCancelAddVi"
-            android:layout_weight="1"
-            android:background="@drawable/ball_stop"
-            android:layout_width="45dp"
-            android:layout_height="45dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/layoutAddVi2">
 
+            <Button
+                android:id="@+id/btnAddNewVi"
+                android:background="@drawable/btn_add"
+                android:scaleType="fitStart"
+                android:layout_marginStart="10dp"
+                android:layout_height="50dp"
+                android:layout_width="50dp" />
+
+            <Button
+                android:id="@+id/btnCancelAddVi"
+                android:background="@drawable/ball_stop"
+                android:layout_width="45dp"
+                android:layout_height="45dp" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ChitieuEditBox"
+        android:id="@+id/ViEditBox"
         android:layout_margin="15dp"
         android:background="#fffb80"
         android:visibility="gone">
@@ -64,6 +81,19 @@
             android:text="Name"
             android:ems="10"
             android:id="@+id/editnameVi"
+            android:background="@drawable/border_style_1"
+            android:paddingStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="24sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="So Tien"
+            android:ems="10"
+            android:id="@+id/editsotienVi"
             android:background="@drawable/border_style_1"
             android:paddingStart="15dp"
             android:layout_marginBottom="5dp"
@@ -114,7 +144,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:id="@+id/layoutbtnAddChiTieu">
+        android:id="@+id/layoutbtnAddVi">
 
         <Button
             android:text="Thêm mới Ví"

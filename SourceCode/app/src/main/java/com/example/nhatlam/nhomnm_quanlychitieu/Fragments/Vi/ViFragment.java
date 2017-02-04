@@ -4,6 +4,7 @@ package com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi;
  * Created by MinhLuan on 2/4/2017.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,14 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddCatagoryTask;
-import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddLoaiViTask;
+import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddViTask;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.dbstring;
-import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.*;
-import com.example.nhatlam.nhomnm_quanlychitieu.Models._category;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi.*;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._vi;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
 
 import java.util.ArrayList;
@@ -35,14 +37,16 @@ public class ViFragment extends Fragment {
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     static databasehelper db;
-    List<_category> lst;
-    static List<CategoryProvider> lstCate;
+    List<_vi> lst;
+    static List<ViProvider> lstVi;
     static View v;
     static View vContain;
     static View vButtonShow;
     static View vbox;
-    static EditText txtEdit;
-    static EditText txtAdd;
+    static EditText txtEditViName;
+    static EditText txtEditViSoTien;
+    static EditText txtAddViName;
+    static EditText txtAddViSoTien;
 
     static int editPosition;
 
@@ -58,37 +62,41 @@ public class ViFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_chi_tieu, container, false);
+        v = inflater.inflate(R.layout.fragment_vi, container, false);
 
-        txtAdd = (EditText)v.findViewById(R.id.txtChitieuName);
-        txtEdit = (EditText)v.findViewById(R.id.editnameChiTieu);
+        txtAddViName = (EditText)v.findViewById(R.id.txtViName);
+        txtAddViSoTien = (EditText)v.findViewById(R.id.txtViSoTien);
 
-        vContain = v.findViewById(R.id.layoutAddChiTieu);
-        vButtonShow = v.findViewById(R.id.layoutbtnAddChiTieu);
-        vbox = v.findViewById(R.id.ChitieuEditBox);
+        txtEditViName = (EditText)v.findViewById(R.id.editnameVi);
+        txtEditViSoTien = (EditText)v.findViewById(R.id.editsotienVi);
+
+        vContain = v.findViewById(R.id.layoutAddVi);
+        vButtonShow = v.findViewById(R.id.layoutbtnAddVi);
+        vbox = v.findViewById(R.id.ViEditBox);
 
 
-        Button btnAcceptEdit=(Button) v.findViewById(R.id.btnEditChiTieu);
-        Button btnCancelEdit = (Button)v.findViewById(R.id.btnCancelEditChitieu);
-        Button btnDelete = (Button)v.findViewById(R.id.btnDeleteChiTieu);
+        Button btnAcceptEdit=(Button) v.findViewById(R.id.btnEditVi);
+        Button btnCancelEdit = (Button)v.findViewById(R.id.btnCancelEditVi);
+        Button btnDelete = (Button)v.findViewById(R.id.btnDeleteVi);
 
-        Button btnCancel = (Button) v.findViewById(R.id.btnCancelChiTieu);
+        Button btnCancel = (Button) v.findViewById(R.id.btnCancelAddVi);
 
-        rView = (RecyclerView)v.findViewById(R.id.lstChitieu);
-        Button btnAdd = (Button)v.findViewById(R.id.btnAddNewChiTieu);
-        Button btnShowAdd = (Button)v.findViewById(R.id.btnShowContainChiTieu);
+        rView = (RecyclerView)v.findViewById(R.id.lstVi);
+        Button btnAdd = (Button)v.findViewById(R.id.btnAddNewVi);
+        Button btnShowAdd = (Button)v.findViewById(R.id.btnShowContainVi);
 
 
 
         ///////////////////////////////////set adapter first/////////////////////////////////////////////
         db = new databasehelper(getActivity().getApplicationContext());
-        lst= db.laydanhsachCategory(0);
-        lstCate = new ArrayList<CategoryProvider>();
+        
+        lst= db.laydanhsachVi(db.getUser());
+        lstVi = new ArrayList<ViProvider>();
         for(int i=0;i<lst.size();i++){
-            CategoryProvider cateprovider = new CategoryProvider(lst.get(i).getCategory_id(),R.drawable.chi,lst.get(i).getCategory_name());
-            lstCate.add(cateprovider);
+            ViProvider catevi = new ViProvider(lst.get(i).getVi_id(),R.drawable.chi,lst.get(i).getVi_name(),lst.get(i).getSotien());
+            lstVi.add(catevi);
         }
-        adapter = new CategoryRecylerAdapter(getActivity().getApplicationContext(),lstCate);
+        adapter = new ViRecylerAdapter(getActivity().getApplicationContext(),lstVi);
         rView.setHasFixedSize(true);
 
         layoutManager= new LinearLayoutManager(getActivity());
@@ -99,12 +107,14 @@ public class ViFragment extends Fragment {
         btnAcceptEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _category category = new _category();
-                category.setCategory_id(editPosition);
-                category.setCategory_name(txtEdit.getText().toString());
-                if(db.chinhsuaCategory(category)==true){
+                _vi vi = new _vi();
+                vi.setVi_id(editPosition);
+                vi.setVi_name(txtEditViName.getText().toString());
+                vi.setSotien(txtEditViSoTien.getText().toString());
+                if(db.chinhsuaVi(vi)==true){
                     Toast.makeText(getActivity().getApplicationContext(),"Chỉnh sửa thành công!",Toast.LENGTH_SHORT);
-                    txtEdit.setText("");
+                    txtEditViName.setText("");
+                    txtEditViSoTien.setText("");
                     vContain.setVisibility(View.GONE);
                     vButtonShow.setVisibility(View.VISIBLE);
                     vbox.setVisibility(View.GONE);
@@ -118,7 +128,8 @@ public class ViFragment extends Fragment {
         btnCancelEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtEdit.setText("");
+                txtEditViName.setText("");
+                txtEditViSoTien.setText("");
                 vContain.setVisibility(View.GONE);
                 vButtonShow.setVisibility(View.VISIBLE);
                 vbox.setVisibility(View.GONE);
@@ -128,11 +139,12 @@ public class ViFragment extends Fragment {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _category category = new _category();
-                category.setCategory_id(editPosition);
-                if(db.xoaCategory(category)==true){
+                _vi vi = new _vi();
+                vi.setVi_id(editPosition);
+                if(db.xoaVi(vi)==true){
                     Toast.makeText(getActivity().getApplicationContext(),"Xóa thành công!",Toast.LENGTH_SHORT);
-                    txtEdit.setText("");
+                    txtEditViName.setText("");
+                    txtEditViSoTien.setText("");
                     vContain.setVisibility(View.GONE);
                     vButtonShow.setVisibility(View.VISIBLE);
                     vbox.setVisibility(View.GONE);
@@ -147,7 +159,8 @@ public class ViFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtAdd.setText("");
+                txtAddViName.setText("");
+                txtAddViSoTien.setText("");
                 vContain.setVisibility(View.GONE);
                 vButtonShow.setVisibility(View.VISIBLE);
             }
@@ -166,11 +179,12 @@ public class ViFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String value = txtAdd.getText().toString();
-                String subval = value.replaceAll("\\s","");
-                AddCatagoryTask task;
+                String viname = txtAddViName.getText().toString();
+                String sotien = txtAddViSoTien.getText().toString();
+                String subval = viname.replaceAll("\\s","");
+                AddViTask task;
                 if(subval.equals("")==false) {
-                    task = new AddCatagoryTask(getActivity().getApplicationContext(), dbstring.TABLE_CATEGORY, value, 0);
+                    task = new AddViTask(getActivity().getApplicationContext(), dbstring.TABLE_VI, db.getUser().getUser_id(), viname, 0,sotien,0);
                     task.execute();
                     vContain.setVisibility(View.GONE);
                     vbox.setVisibility(View.GONE);
@@ -182,7 +196,7 @@ public class ViFragment extends Fragment {
                     }
                     refreshData();
                 }else{
-                    Toast.makeText(getActivity().getApplicationContext(),"Tên danh mục không bỏ trống!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"Tên ví không bỏ trống!",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -196,11 +210,13 @@ public class ViFragment extends Fragment {
                 vContain.setVisibility(View.GONE);
                 vButtonShow.setVisibility(View.GONE);
 
-                editPosition=lstCate.get(position).getId();
+                editPosition=lstVi.get(position).getId();
 
-                EditText edit = (EditText)v.findViewById(R.id.editnameChiTieu);
-                CategoryProvider provider = lstCate.get(position);
+                EditText edit = (EditText)v.findViewById(R.id.editnameVi);
+                EditText edit2 = (EditText)v.findViewById(R.id.editsotienVi);
+                ViProvider provider = lstVi.get(position);
                 edit.setText(provider.getName());
+                edit2.setText(provider.getSotien());
             }
 
             @Override
@@ -215,14 +231,14 @@ public class ViFragment extends Fragment {
 
 
     public void refreshData(){
-        lst= db.laydanhsachCategory(0);
-        lstCate = new ArrayList<CategoryProvider>();
+        lst= db.laydanhsachVi(db.getUser());
+        lstVi = new ArrayList<ViProvider>();
         for(int i=0;i<lst.size();i++){
-            CategoryProvider cateprovider = new CategoryProvider(lst.get(i).getCategory_id(),R.drawable.chi,lst.get(i).getCategory_name());
-            lstCate.add(cateprovider);
+            ViProvider catevi = new ViProvider(lst.get(i).getVi_id(),R.drawable.chi,lst.get(i).getVi_name(),lst.get(i).getSotien());
+            lstVi.add(catevi);
         }
 
-        adapter = new CategoryRecylerAdapter(getActivity().getApplicationContext(),lstCate);
+        adapter = new ViRecylerAdapter(getActivity().getApplicationContext(),lstVi);
         rView.setAdapter(adapter);
 
     }

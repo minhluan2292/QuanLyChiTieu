@@ -10,9 +10,9 @@
 
     </View>
     <ImageView
-        android:layout_height="48dp"
+        android:layout_height="96dp"
         android:id="@+id/imgVi"
-        android:layout_width="48dp"
+        android:layout_width="96dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp" />
 
@@ -26,10 +26,23 @@
         android:textColor="@android:color/background_dark"
         android:textSize="24sp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imgCategory"
-        android:layout_toEndOf="@+id/imgCategory"
+        android:layout_toRightOf="@+id/imgVi"
+        android:layout_toEndOf="@+id/imgVi"
         android:paddingStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViSoTien"
+        android:layout_toRightOf="@+id/imgVi"
+        android:layout_below="@+id/txtViName"
+        android:textSize="20sp"
+        android:paddingStart="20dp"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        />
 
 </RelativeLayout>

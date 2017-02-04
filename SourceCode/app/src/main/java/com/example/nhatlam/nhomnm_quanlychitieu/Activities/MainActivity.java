@@ -73,9 +73,6 @@ public class MainActivity extends AppCompatActivity
             user =  (_user)i.getExtras().getSerializable("user");
         }
 
-
-
-
         txtuser = (TextView) header.findViewById(R.id.txtUser);
 
         txtuser.setText(user.getUsername());

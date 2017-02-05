@@ -19,6 +19,22 @@
             android:id="@+id/nav_Vi"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Quản lý Ví" />
+        <item
+            android:id="@+id/nav_SoTietKiem"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Sổ tiết kiệm" />
+        <item
+            android:id="@+id/nav_SoNo"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Sổ nợ" />
+        <item
+            android:id="@+id/nav_ChuyenTien"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Chuyển tiền" />
+        <item
+            android:id="@+id/nav_DoiTienTe"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Đổi tiền tệ" />
     </group>
 
     <item android:title="Communicate">

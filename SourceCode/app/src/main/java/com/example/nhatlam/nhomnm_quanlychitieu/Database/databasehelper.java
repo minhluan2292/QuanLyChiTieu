@@ -87,15 +87,18 @@ public class databasehelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public _user getUser(){
+    public _user getUser(int id){
         _user user = new _user();
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectUser = "select * from "+dbstring.TABLE_USER+" where "+dbstring.KEY_USER_ID+" = 1";
+        String selectUser = "select * from "+dbstring.TABLE_USER+" where "+dbstring.KEY_USER_ID+" = "+id;
         Cursor c =db.rawQuery(selectUser,null);
-        if (c != null)
-            c.moveToFirst();
-
-        user.setUsername(c.getString(c.getColumnIndex(dbstring.KEY_USERNAME)));
+        if (c.moveToFirst()) {
+            user.setUser_id(id);
+            user.setUsername(c.getString(c.getColumnIndex(dbstring.KEY_USERNAME)));
+            user.setSdt(c.getString(c.getColumnIndex(dbstring.KEY_SDT)));
+            user.setPassword(c.getString(c.getColumnIndex(dbstring.KEY_PASSWORD)));
+            user.setRemember(c.getInt(c.getColumnIndex(dbstring.KEY_REMEMBER)));
+        }
         return user;
     }
 
@@ -206,6 +209,34 @@ public class databasehelper extends SQLiteOpenHelper {
         }
         return lstuser;
     }
+
+    public Boolean chinhsuaThongTinUser(_user user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(dbstring.KEY_SDT,user.getSdt());
+        value.put(dbstring.KEY_PASSWORD,user.getPassword());
+
+        try{
+            db.update(dbstring.TABLE_USER,value,dbstring.KEY_USER_ID+"="+user.getUser_id(),null);
+            return true;
+        } catch (Exception e){
+
+        }
+        return false;
+    }
+
+    public Boolean thaydoiPassword(_user user, String newpassword,String oldpassword){
+        oldpassword=encryptMD5(oldpassword);
+        if(user.getPassword().equals(oldpassword)==true){
+            newpassword = encryptMD5(newpassword);
+            user.setPassword(newpassword);
+            return chinhsuaThongTinUser(user);
+        }
+
+
+        return false;
+    }
+
 
     public void RemoveAllUser(){
         List<_user> lstuser=laydanhsachUser();

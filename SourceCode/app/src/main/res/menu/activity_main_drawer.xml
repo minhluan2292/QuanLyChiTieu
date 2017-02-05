@@ -4,6 +4,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_Thongtincanhan"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Thông tin cá nhân" />
+        <item
             android:id="@+id/nav_Catagory"
             android:icon="@drawable/ic_menu_camera"
             android:title="Quản lý danh mục" />
@@ -15,10 +19,6 @@
             android:id="@+id/nav_Vi"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Quản lý Ví" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
     </group>
 
     <item android:title="Communicate">

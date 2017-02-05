@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.fragmentAdapter;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
 /**
  * Created by MinhLuan on 2/4/2017.
@@ -20,9 +21,15 @@ public class QLViFragment extends Fragment {
     TabLayout tabLayout;
     fragmentAdapter adapter;
     FragmentManager fragmentManager;
+    _user user;
 
     public QLViFragment() {
         // Required empty public constructor
+    }
+
+    public QLViFragment(_user user) {
+        // Required empty public constructor
+        this.user = user;
     }
 
 
@@ -35,7 +42,7 @@ public class QLViFragment extends Fragment {
         vPaper = (ViewPager)v.findViewById(R.id.viewPaperQLVi);
         fragmentManager = getChildFragmentManager();
         adapter = new fragmentAdapter(fragmentManager);
-        adapter.addFragment(new ViFragment(),"Ví");
+        adapter.addFragment(new ViFragment(user),"Ví");
         adapter.addFragment(new LoaiViFragment(),"Loại Ví");
 
         vPaper.setAdapter(adapter);

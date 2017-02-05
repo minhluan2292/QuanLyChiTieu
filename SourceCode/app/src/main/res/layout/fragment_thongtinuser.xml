@@ -1,0 +1,328 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nhatlam.nhomnm_quanlychitieu.Fragments.User.ThongtinuserFragment"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vboxThongTinUser"
+        android:padding="15dp"
+        android:visibility="gone">
+
+        <TextView
+            android:text="THÔNG TIN NGƯỜI DÙNG"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="#cff8fe"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/vboxUsername"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp">
+
+            <TextView
+                android:text="Username:"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtThongtinUsername"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/vboxSDT"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp">
+
+            <TextView
+                android:text="SDT:"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+            <TextView
+                android:text="user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtThongtinSDT"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/vboxButtonThongTin">
+
+            <Button
+                android:text="Chỉnh sửa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditUser"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#eeff00"
+                android:layout_marginRight="5dp" />
+
+            <Button
+                android:text="Đổi mật khẩu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditPassUser"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="@color/colorPrimaryDark"
+                android:textColor="#eeff00"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vboxEditUser"
+        android:padding="15dp">
+        <TextView
+            android:text="THAY ĐỔI THÔNG TIN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="#cff8fe"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/vboxUsernameEdit"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="15dp"
+            android:weightSum="1">
+
+            <TextView
+                android:text="Username:"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:layout_width="100dp" />
+
+            <TextView
+                android:text="user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtEditUsername"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/vboxSDTEdit"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:text="SDT:"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:layout_width="100dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/txtEditSDT"
+                android:layout_weight="0.23"
+                android:background="#bbffa8"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/vboxButtonThongTinEdit">
+
+            <Button
+                android:text="Xác nhận"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditUserAccept"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="@color/colorPrimary"
+                android:textColor="#eeff00"
+                android:layout_marginRight="5dp"
+                android:drawableLeft="@drawable/ic_action_accept" />
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditUserCancel"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="#dd1613"
+                android:textColor="#eeff00"
+                android:layout_marginLeft="5dp"
+                android:drawableLeft="@drawable/ic_action_cancel" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vboxEditUserPassword"
+        android:padding="15dp"
+        android:visibility="gone">
+        <TextView
+            android:text="THAY ĐỔI MẬT KHẨU"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:background="#cff8fe"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="15dp"
+            android:weightSum="1">
+
+            <TextView
+                android:text="Mật khẩu mới:"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="14sp"
+                android:layout_width="100dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:text="Name"
+                android:ems="10"
+                android:id="@+id/txtNewUserPassword"
+                android:layout_weight="1"
+                android:background="#bbffa8"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="15dp">
+
+            <TextView
+                android:text="Mật khẩu cũ:"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="14sp"
+                android:layout_width="100dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/txtOldUserPassword"
+                android:layout_weight="0.23"
+                android:background="#bbffa8"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="Xác nhận"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditUserPasswordAccept"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="@color/colorPrimary"
+                android:textColor="#eeff00"
+                android:layout_marginRight="5dp"
+                android:drawableLeft="@drawable/ic_action_accept" />
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditUserPasswordCancel"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="#dd1613"
+                android:textColor="#eeff00"
+                android:layout_marginLeft="5dp"
+                android:drawableLeft="@drawable/ic_action_cancel" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

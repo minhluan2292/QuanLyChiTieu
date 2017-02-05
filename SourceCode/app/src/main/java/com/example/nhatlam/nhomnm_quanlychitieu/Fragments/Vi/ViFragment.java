@@ -4,7 +4,6 @@ package com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi;
  * Created by MinhLuan on 2/4/2017.
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,15 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddViTask;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.dbstring;
-import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi.*;
-import com.example.nhatlam.nhomnm_quanlychitieu.Models._vi;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._vi;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
 
 import java.util.ArrayList;
@@ -47,11 +44,18 @@ public class ViFragment extends Fragment {
     static EditText txtEditViSoTien;
     static EditText txtAddViName;
     static EditText txtAddViSoTien;
+    _user user;
 
     static int editPosition;
 
     public ViFragment() {
         // Required empty public constructor
+
+    }
+
+    public ViFragment(_user user) {
+        // Required empty public constructor
+        this.user = user;
 
     }
 
@@ -90,7 +94,7 @@ public class ViFragment extends Fragment {
         ///////////////////////////////////set adapter first/////////////////////////////////////////////
         db = new databasehelper(getActivity().getApplicationContext());
         
-        lst= db.laydanhsachVi(db.getUser());
+        lst= db.laydanhsachVi(user);
         lstVi = new ArrayList<ViProvider>();
         for(int i=0;i<lst.size();i++){
             ViProvider catevi = new ViProvider(lst.get(i).getVi_id(),R.drawable.chi,lst.get(i).getVi_name(),lst.get(i).getSotien());
@@ -184,7 +188,7 @@ public class ViFragment extends Fragment {
                 String subval = viname.replaceAll("\\s","");
                 AddViTask task;
                 if(subval.equals("")==false) {
-                    task = new AddViTask(getActivity().getApplicationContext(), dbstring.TABLE_VI, db.getUser().getUser_id(), viname, 0,sotien,0);
+                    task = new AddViTask(getActivity().getApplicationContext(), dbstring.TABLE_VI, user.getUser_id(), viname, 0,sotien,0);
                     task.execute();
                     vContain.setVisibility(View.GONE);
                     vbox.setVisibility(View.GONE);
@@ -231,7 +235,7 @@ public class ViFragment extends Fragment {
 
 
     public void refreshData(){
-        lst= db.laydanhsachVi(db.getUser());
+        lst= db.laydanhsachVi(user);
         lstVi = new ArrayList<ViProvider>();
         for(int i=0;i<lst.size();i++){
             ViProvider catevi = new ViProvider(lst.get(i).getVi_id(),R.drawable.chi,lst.get(i).getVi_name(),lst.get(i).getSotien());

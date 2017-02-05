@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.CatagoryFragment;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.User.ThongtinuserFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi.QLViFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity
         Intent i = getIntent();
         if(i.getExtras().getSerializable("user")!=null){
             user =  (_user)i.getExtras().getSerializable("user");
+            user =db.getUser(user.getUser_id());
         }
 
         txtuser = (TextView) header.findViewById(R.id.txtUser);
@@ -127,21 +129,22 @@ public class MainActivity extends AppCompatActivity
         }
         */
 
-
-        if (id == R.id.nav_Catagory) {
+        if (id == R.id.nav_Thongtincanhan) {
+            ThongtinuserFragment fragment = new ThongtinuserFragment(user);
+            fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_Catagory) {
             CatagoryFragment fragment = new CatagoryFragment();
             fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_SuKienChiTieu) {
 
         } else if (id == R.id.nav_Vi) {
-            QLViFragment fragment = new QLViFragment();
+            QLViFragment fragment = new QLViFragment(user);
             fragmentTransaction.replace(layoutContain.getId(), fragment).addToBackStack(null);
             fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
+        } else  if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
             user = db.dangxuatUser(user);

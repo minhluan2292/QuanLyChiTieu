@@ -275,6 +275,23 @@ public class databasehelper extends SQLiteOpenHelper {
         return false;
     }
 
+    //getThong tin ví
+    public _vi getVI(int viID){
+        _vi v = new _vi();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String select = "select * from "+dbstring.TABLE_VI+" where "+dbstring.KEY_VI_ID+" = "+viID;
+        Cursor c = db.rawQuery(select,null);
+        if(c.moveToFirst()){
+            v.setVi_id(c.getInt(c.getColumnIndex(dbstring.KEY_VI_ID)));
+            v.setUser_id(c.getInt(c.getColumnIndex(dbstring.KEY_USER_ID)));
+            v.setVi_name(c.getString(c.getColumnIndex(dbstring.KEY_VI_NAME)));
+            v.setDonvitien(c.getInt(c.getColumnIndex(dbstring.KEY_DONVITIEN_ID)));
+            v.setSotien(c.getString(c.getColumnIndex(dbstring.KEY_SOTIEN)));
+        }
+
+        return v;
+    }
+
     //lay danh sach vi
     public List<_vi> laydanhsachVi(_user user){
         List<_vi> lstVi = new ArrayList<_vi>();
@@ -495,6 +512,23 @@ public class databasehelper extends SQLiteOpenHelper {
         return false;
     }
 
+
+    //lay thong tin cate
+    public _category getCategory(int cateID){
+        _category cate = new _category();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String select = "select * from "+dbstring.TABLE_CATEGORY+" where "+dbstring.KEY_CATEGORY_ID+"="+cateID;
+
+        Cursor c = db.rawQuery(select,null);
+        if(c.moveToFirst()){
+            cate.setCategory_id(c.getInt(c.getColumnIndex(dbstring.KEY_CATEGORY_ID)));
+            cate.setCategory_name(c.getString(c.getColumnIndex(dbstring.KEY_CATEGORY_NAME)));
+            cate.setParent(c.getInt(c.getColumnIndex(dbstring.KEY_PARENT)));
+        }
+
+        return cate;
+    }
+
     //lay danh sach category
     public List<_category> laydanhsachCategory(int parent){
         List<_category> lstCategory = new ArrayList<_category>();
@@ -564,14 +598,35 @@ public class databasehelper extends SQLiteOpenHelper {
         value.put(dbstring.KEY_GHICHU,giaodich.getGhichu());
 
         try{
-            db.insert(dbstring.TABLE_GIAODICH,null,value);
-            return true;
+
+
+            _vi vi = getVI(giaodich.getVi_id());
+            _category cate = getCategory(giaodich.getCategory_id());
+            float currentTien;
+            float sotiengiaodich;
+            float newTien=0;
+            currentTien = Float.parseFloat(vi.getSotien());
+            sotiengiaodich = Float.parseFloat(giaodich.getSotien());
+            if(cate.getParent()==0){ //chi tiêu
+                newTien = currentTien-sotiengiaodich;
+            } else if(cate.getParent()==1){// thu
+                newTien = currentTien+sotiengiaodich;
+            }
+
+            vi.setSotien(Float.toString(newTien));
+
+            if(chinhsuaVi(vi)==true) {
+                db.insert(dbstring.TABLE_GIAODICH, null, value);
+                return true;
+            }
         }catch (Exception e){
             Log.e(null,e.toString());
         }
 
         return false;
     }
+
+
 
 
     //lay danh sach giaodich

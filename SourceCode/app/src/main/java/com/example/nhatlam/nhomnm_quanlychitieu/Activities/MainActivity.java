@@ -20,6 +20,10 @@ import android.widget.TextView;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.CatagoryFragment;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.ChuyenTien.ChuyenTienFragment;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.DoiTienTe.DoiTienTeFragment;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.SoNo.SoNoFragment;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.SoTietKiem.SoTietKiemFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.User.ThongtinuserFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi.QLViFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
@@ -150,6 +154,22 @@ public class MainActivity extends AppCompatActivity
             user = db.dangxuatUser(user);
             Intent i = new Intent(this.getApplicationContext(),DangNhapActivity.class);
             startActivity(i);
+        }else if (id == R.id.nav_SoTietKiem) {
+            SoTietKiemFragment fragment = new SoTietKiemFragment();
+            fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
+            fragmentTransaction.commit();
+        }else if (id == R.id.nav_SoNo) {
+            SoNoFragment fragment = new SoNoFragment();
+            fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
+            fragmentTransaction.commit();
+        }else if (id == R.id.nav_ChuyenTien) {
+            ChuyenTienFragment fragment = new ChuyenTienFragment();
+            fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
+            fragmentTransaction.commit();
+        }else if (id == R.id.nav_DoiTienTe) {
+            DoiTienTeFragment fragment = new DoiTienTeFragment();
+            fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
+            fragmentTransaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this.getApplicationContext(),DangNhapActivity.class);
             startActivity(i);
         }else if (id == R.id.nav_SoTietKiem) {
-            SoTietKiemFragment fragment = new SoTietKiemFragment();
+            SoTietKiemFragment fragment = new SoTietKiemFragment(user);
             fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
             fragmentTransaction.commit();
         }else if (id == R.id.nav_SoNo) {

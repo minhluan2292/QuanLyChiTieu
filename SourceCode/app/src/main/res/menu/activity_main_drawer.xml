@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_Thongtincanhan"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/icon_person"
             android:title="Thông tin cá nhân" />
         <item
             android:id="@+id/nav_Catagory"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/icon_chitieu"
             android:title="Quản lý danh mục" />
         <item
             android:id="@+id/nav_SuKienChiTieu"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/icon_save"
             android:title="Sự Kiện Chi Tiêu" />
         <item
             android:id="@+id/nav_Vi"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_vi"
             android:title="Quản lý Ví" />
         <item
             android:id="@+id/nav_SoTietKiem"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_tietkiem"
             android:title="Sổ tiết kiệm" />
         <item
             android:id="@+id/nav_SoNo"
@@ -29,11 +29,11 @@
             android:title="Sổ nợ" />
         <item
             android:id="@+id/nav_ChuyenTien"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_transfer"
             android:title="Chuyển tiền" />
         <item
             android:id="@+id/nav_DoiTienTe"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/icon_transfer"
             android:title="Đổi tiền tệ" />
     </group>
 

@@ -80,7 +80,7 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
@@ -101,7 +101,7 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
 
 
         vContain = v.findViewById(R.id.layoutAddThuChi);
-        vButtonShow = v.findViewById(R.id.layoutAddThuChi);
+        vButtonShow = v.findViewById(R.id.layoutbtnAddThuChi);
         vbox = v.findViewById(R.id.ThuChiEditBox);
 
 
@@ -202,10 +202,19 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
         btnShowAddChi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 vContain.setVisibility(View.VISIBLE);
                 vButtonShow.setVisibility(View.GONE);
                 vbox.setVisibility(View.GONE);
-            }
+                ArrayList<ThuChiData> list=new ArrayList<>();
+                for (_category cate:db.laydanhsachCategory(0)) {
+                    System.out.println(cate.getCategory_id());
+                    System.out.println(cate.getCategory_name());
+                    list.add(new ThuChiData(cate.getCategory_id(),cate.getCategory_name(),R.drawable.chi));
+                }
+                SpinnerThuChiAdapter adapter=new SpinnerThuChiAdapter(getActivity().getApplicationContext(),list);
+                spinnerCatagory.setAdapter(adapter);
+                }
         });
         btnShowAddThu.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -17,9 +17,10 @@
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:id="@+id/spinnerCatagory"
-            android:layout_weight="2.08" />
+            android:layout_weight="2.08"
+            android:spinnerMode="dialog" />
 
         <EditText
             android:layout_width="match_parent"
@@ -220,7 +221,8 @@
             android:textColor="#ffffff"
             android:gravity="center_vertical"
             android:paddingStart="5dp"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:layout_marginStart="5dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"

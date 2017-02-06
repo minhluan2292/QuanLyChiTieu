@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary">
+
+    </View>
+    <ImageView
+        android:layout_height="96dp"
+        android:id="@+id/imgChi"
+        android:layout_width="96dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:id="@+id/txtSoTienChi"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imgVi"
+        android:layout_toEndOf="@+id/imgVi"
+        android:paddingStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtGhiChuChi"
+        android:layout_toRightOf="@+id/imgVi"
+        android:layout_below="@+id/txtViName"
+        android:textSize="20sp"
+        android:paddingStart="20dp"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        />
+
+</RelativeLayout>

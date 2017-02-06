@@ -24,6 +24,7 @@ import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.ChuyenTien.ChuyenTienF
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.DoiTienTe.DoiTienTeFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.SoNo.SoNoFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.SoTietKiem.SoTietKiemFragment;
+import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.SuKienChiTieu.SuKienChiTieuFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.User.ThongtinuserFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi.QLViFragment;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
@@ -142,6 +143,9 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_SuKienChiTieu) {
+            SuKienChiTieuFragment fragment = new SuKienChiTieuFragment(db.getVI(1));
+            fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_Vi) {
             QLViFragment fragment = new QLViFragment(user);

@@ -49,6 +49,30 @@
             android:id="@+id/layoutAddVi2">
 
             <Button
+                android:text="Xác nhận"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAddNewVi"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="@color/colorPrimary"
+                android:textColor="#eeff00"
+                android:layout_marginRight="5dp"
+                android:drawableLeft="@drawable/ic_action_accept" />
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnCancelAddVi"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="#dd1613"
+                android:textColor="#eeff00"
+                android:layout_marginLeft="5dp"
+                android:drawableLeft="@drawable/ic_action_cancel" />
+
+           <!-- <Button
                 android:id="@+id/btnAddNewVi"
                 android:background="@drawable/btn_add"
                 android:scaleType="fitStart"
@@ -60,7 +84,7 @@
                 android:id="@+id/btnCancelAddVi"
                 android:background="@drawable/ball_stop"
                 android:layout_width="45dp"
-                android:layout_height="45dp" />
+                android:layout_height="45dp" />-->
 
         </LinearLayout>
     </LinearLayout>

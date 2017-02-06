@@ -292,6 +292,31 @@ public class databasehelper extends SQLiteOpenHelper {
         return v;
     }
 
+    // chuyen tien giua cac vi
+    public Boolean chuyentienVi(int fromViID, int toViID, String sotienchuyen){
+        _vi vi1 = getVI(fromViID);
+        _vi vi2 = getVI(toViID);
+
+        float fsotienchuyen = Float.parseFloat(sotienchuyen);
+        float ftienVi1 = Float.parseFloat(vi1.getSotien());
+        float ftienVi2 = Float.parseFloat(vi2.getSotien());
+
+        if(fsotienchuyen>ftienVi1){
+            return false;
+        }else {
+            ftienVi1 = ftienVi1-fsotienchuyen;
+            ftienVi2=ftienVi2+fsotienchuyen;
+            vi1.setSotien(Float.toString(ftienVi1));
+            vi2.setSotien(Float.toString(ftienVi2));
+
+            if((chinhsuaVi(vi1)==true)&&(chinhsuaVi(vi2)==true)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     //lay danh sach vi
     public List<_vi> laydanhsachVi(_user user){
         List<_vi> lstVi = new ArrayList<_vi>();
@@ -608,7 +633,10 @@ public class databasehelper extends SQLiteOpenHelper {
             currentTien = Float.parseFloat(vi.getSotien());
             sotiengiaodich = Float.parseFloat(giaodich.getSotien());
             if(cate.getParent()==0){ //chi tiêu
-                newTien = currentTien-sotiengiaodich;
+                if(currentTien>sotiengiaodich)
+                    newTien = currentTien-sotiengiaodich;
+                else
+                    return false;
             } else if(cate.getParent()==1){// thu
                 newTien = currentTien+sotiengiaodich;
             }

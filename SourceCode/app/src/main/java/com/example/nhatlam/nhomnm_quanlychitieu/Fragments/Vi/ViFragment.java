@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.nhatlam.nhomnm_quanlychitieu.Activities.MainActivity;
 import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddViTask;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.dbstring;
@@ -123,6 +124,12 @@ public class ViFragment extends Fragment {
                     vButtonShow.setVisibility(View.VISIBLE);
                     vbox.setVisibility(View.GONE);
                     refreshData();
+                    try {
+                        ((MainActivity) getActivity()).reloadSpinnerVi();
+                    }catch (Exception E){
+                        //
+                    }
+
                 }else{
                     Toast.makeText(getActivity().getApplicationContext(),"Chỉnh sửa thất bại!",Toast.LENGTH_SHORT);
                 }
@@ -153,6 +160,11 @@ public class ViFragment extends Fragment {
                     vButtonShow.setVisibility(View.VISIBLE);
                     vbox.setVisibility(View.GONE);
                     refreshData();
+                    try {
+                        ((MainActivity) getActivity()).reloadSpinnerVi();
+                    }catch (Exception E){
+                        //
+                    }
                 }else{
                     Toast.makeText(getActivity().getApplicationContext(),"Xóa thất bại!",Toast.LENGTH_SHORT);
                 }
@@ -197,6 +209,11 @@ public class ViFragment extends Fragment {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
+                    }
+                    try {
+                        ((MainActivity) getActivity()).reloadSpinnerVi();
+                    }catch (Exception E){
+                        //
                     }
                     refreshData();
                 }else{

@@ -4,10 +4,7 @@ package com.example.nhatlam.nhomnm_quanlychitieu.Fragments.SuKienChiTieu;
  * Created by MinhLuan on 2/5/2017.
  */
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,16 +13,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.DatePicker;
 
+import com.example.nhatlam.nhomnm_quanlychitieu.Activities.MainActivity;
 import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddSuKienChiTieuTask;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.dbstring;
-import com.example.nhatlam.nhomnm_quanlychitieu.Models.*;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._category;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._giaodich;
+import com.example.nhatlam.nhomnm_quanlychitieu.Models._vi;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
 
 import java.text.DateFormat;
@@ -33,8 +33,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-
-import static com.example.nhatlam.nhomnm_quanlychitieu.Activities.MainActivity.user;
 
 
 /**
@@ -271,6 +269,11 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                 String ngaygiaodich = viewNgay.getText().toString();
                 String subval = sotien.replaceAll("\\s","");
                 AddSuKienChiTieuTask task;
+                try {
+                    vi = ((MainActivity) getActivity()).getCurrentVi();
+                }catch (Exception e){
+                    //
+                }
                 if(subval.equals("")==false) {
                     task = new AddSuKienChiTieuTask(getActivity().getApplicationContext(), dbstring.TABLE_GIAODICH, vi.getVi_id(),
                             catagoryadd.getCategory_id(), sotien,ngaygiaodich,ghichu);

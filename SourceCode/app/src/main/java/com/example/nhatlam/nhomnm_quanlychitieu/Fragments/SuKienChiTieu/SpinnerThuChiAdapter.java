@@ -20,38 +20,25 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class SpinnerThuChiAdapter extends BaseAdapter {
+public class SpinnerThuChiAdapter extends ArrayAdapter<ThuChiData> {
     int groupid;
-    Context context;
+    Activity context;
     ArrayList<ThuChiData> list;
     LayoutInflater inflater;
-
-    public SpinnerThuChiAdapter(Context context, ArrayList<ThuChiData> list){
+    public SpinnerThuChiAdapter(Activity context, int groupid, int id, ArrayList<ThuChiData>
+            list){
+        super(context,id,list);
         this.list=list;
-        inflater = (LayoutInflater.from(context));
-    }
-
-    @Override
-    public int getCount() {
-        return 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
+        inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.groupid=groupid;
     }
 
     public View getView(int position, View convertView, ViewGroup parent ){
-        View itemView=inflater.inflate(R.layout.spinner_thuchi_layout,null);
+        View itemView=inflater.inflate(groupid,parent,false);
         ImageView imageView=(ImageView)itemView.findViewById(R.id.imageSpiner);
         imageView.setImageResource(list.get(position).getImageId());
-        TextView textViewID=(TextView)itemView.findViewById(R.id.idSpinner);
-        textViewID.setText(list.get(position).getId());
+        /*TextView textViewID=(TextView)itemView.findViewById(R.id.idSpinner);
+        textViewID.setText(list.get(position).getId());*/
         TextView textView=(TextView)itemView.findViewById(R.id.txtSpiner);
         textView.setText(list.get(position).getText());
         return itemView;

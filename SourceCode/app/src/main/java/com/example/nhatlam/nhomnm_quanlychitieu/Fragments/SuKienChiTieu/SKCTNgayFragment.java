@@ -212,8 +212,9 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                     System.out.println(cate.getCategory_name());
                     list.add(new ThuChiData(cate.getCategory_id(),cate.getCategory_name(),R.drawable.chi));
                 }
-                SpinnerThuChiAdapter adapter=new SpinnerThuChiAdapter(getActivity().getApplicationContext(),list);
+                SpinnerThuChiAdapter adapter=new SpinnerThuChiAdapter(getActivity(),R.layout.spinner_thuchi_layout,R.id.txtSpiner,list);
                 spinnerCatagory.setAdapter(adapter);
+                
                 }
         });
         btnShowAddThu.setOnClickListener(new View.OnClickListener() {

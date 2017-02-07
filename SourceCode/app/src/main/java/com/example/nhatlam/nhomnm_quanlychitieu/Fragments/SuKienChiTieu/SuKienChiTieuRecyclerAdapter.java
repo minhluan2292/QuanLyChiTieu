@@ -32,7 +32,7 @@ public class SuKienChiTieuRecyclerAdapter extends RecyclerView.Adapter<SuKienChi
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.vi_item_layout,parent,false);
+        View view = inflater.inflate(R.layout.thuchi_item_layout,parent,false);
         RecyclerViewHolder holder = new RecyclerViewHolder(view);
         return holder;
     }
@@ -40,9 +40,19 @@ public class SuKienChiTieuRecyclerAdapter extends RecyclerView.Adapter<SuKienChi
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         SuKienChiTieuProvider dataProvider = arrayList.get(position);
-        holder.img.setImageResource(dataProvider.getImg_res());
-        holder.txt.setText(dataProvider.gettengiaodich());
-        holder.txt2.setText(dataProvider.getSotien());
+        holder.imgThuChi.setImageResource(dataProvider.getImg_res());
+        holder.txtTenCata.setText(dataProvider.getTengiaodich());
+        if(dataProvider.getParent()==1)
+        {
+            holder.txtSoTienThu.setText(dataProvider.getSotien());
+            holder.txtSoTienChi.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.txtSoTienChi.setText(dataProvider.getSotien());
+            holder.txtSoTienThu.setVisibility(View.GONE);
+        }
+        holder.txtNgayGiaoDich.setText(dataProvider.getNgaygiaodich());
     }
 
     @Override
@@ -53,15 +63,20 @@ public class SuKienChiTieuRecyclerAdapter extends RecyclerView.Adapter<SuKienChi
 
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView img;
-        TextView txt;
-        TextView txt2;
+        ImageView imgThuChi;
+        TextView txtTenCata;
+        TextView txtSoTienThu;
+        TextView txtSoTienChi;
+        TextView txtNgayGiaoDich;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            img=(ImageView)itemView.findViewById(R.id.imgVi);
-            txt=(TextView) itemView.findViewById(R.id.txtViName);
-            txt2=(TextView) itemView.findViewById(R.id.txtViSoTien);
+            imgThuChi=(ImageView)itemView.findViewById(R.id.imgThuChi);
+            txtTenCata=(TextView) itemView.findViewById(R.id.txtCataGiaoDich);
+            txtSoTienThu=(TextView) itemView.findViewById(R.id.txtSoTienThu);
+            txtSoTienChi=(TextView) itemView.findViewById(R.id.txtSoTienChi);
+            txtNgayGiaoDich=(TextView) itemView.findViewById(R.id.txtNgayGiaoDich);
+
         }
 
     }

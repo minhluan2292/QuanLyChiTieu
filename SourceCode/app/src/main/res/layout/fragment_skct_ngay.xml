@@ -13,25 +13,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layoutAddThuChi"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:visibility="gone">
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:id="@+id/spinnerCatagory"
             android:layout_weight="2.08"
             android:spinnerMode="dialog" />
 
         <EditText
             android:layout_width="match_parent"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:ems="10"
             android:id="@+id/txtSoTien"
-            android:hint="Số tiền Chi"
+            android:hint="Số tiền"
             android:background="@drawable/border_style_1"
             android:layout_height="wrap_content"
             android:paddingStart="15dp"
-            android:textSize="24sp"
+            android:textSize="32sp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp" />
 
@@ -40,11 +41,11 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/txtGhiChu"
-            android:hint="Ghi chú Chi"
+            android:hint="Ghi chú"
             android:background="@drawable/border_style_1"
             android:layout_height="wrap_content"
             android:paddingStart="15dp"
-            android:textSize="24sp"
+            android:textSize="32sp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp" />
 
@@ -53,6 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/viewNgay"
+            android:textSize="32sp"
             android:layout_weight="2.08" />
 
         <LinearLayout

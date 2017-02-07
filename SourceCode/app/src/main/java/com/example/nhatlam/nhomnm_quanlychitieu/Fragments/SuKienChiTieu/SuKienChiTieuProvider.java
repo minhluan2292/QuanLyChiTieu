@@ -18,12 +18,18 @@ public class SuKienChiTieuProvider {
     private int img_res;
     private String tengiaodich;
     private String sotien;
+    private String ngaygiaodich;
+    private int parent;
+    private String ghichu;
 
-    public SuKienChiTieuProvider(int id,int img_res, String tengiaodich, String sotien) {
+    public SuKienChiTieuProvider(int id,int img_res, String tengiaodich, String sotien, String ngaygiaodich, int parent, String ghichu) {
         this.id = id;
         this.img_res = img_res;
         this.tengiaodich = tengiaodich;
         this.sotien = sotien;
+        this.ngaygiaodich = ngaygiaodich;
+        this.parent = parent;
+        this.ghichu = ghichu;
     }
 
     public int getImg_res() {
@@ -34,11 +40,11 @@ public class SuKienChiTieuProvider {
         this.img_res = img_res;
     }
 
-    public String gettengiaodich() {
+    public String getTengiaodich() {
         return tengiaodich;
     }
 
-    public void settengiaodich(String tengiaodich) {
+    public void setTengiaodich(String tengiaodich) {
         this.tengiaodich = tengiaodich;
     }
 
@@ -48,5 +54,29 @@ public class SuKienChiTieuProvider {
 
     public void setSotien(String sotien) {
         this.sotien = sotien;
+    }
+
+    public String getNgaygiaodich() {
+        return ngaygiaodich;
+    }
+
+    public void setNgaygiaodich(String ngaygiaodich) {
+        this.ngaygiaodich = ngaygiaodich;
+    }
+
+    public int getParent() {
+        return parent;
+    }
+
+    public void setParent(int parent) {
+        this.parent = parent;
+    }
+
+    public String getGhichu() {
+        return ghichu;
+    }
+
+    public void setGhichu(String ghichu) {
+        this.ghichu = ghichu;
     }
 }

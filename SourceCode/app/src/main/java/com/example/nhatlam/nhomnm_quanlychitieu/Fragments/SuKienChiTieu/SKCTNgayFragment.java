@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.DatePicker;
 
-import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddViTask;
+import com.example.nhatlam.nhomnm_quanlychitieu.AsyncTask.AddSuKienChiTieuTask;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.dbstring;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models.*;
@@ -65,6 +65,7 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
 
 
     _vi vi;
+    _category catagoryadd;
 
     static int editPosition;
 
@@ -126,7 +127,8 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
         lst= db.laydanhsachGiaodich(vi);
         lstThuChi = new ArrayList<SuKienChiTieuProvider>();
         for(int i=0;i<lst.size();i++){
-            SuKienChiTieuProvider cateThuChi = new SuKienChiTieuProvider(lst.get(i).getGiaodich_id(),R.drawable.chi,db.getCategory(lst.get(i).getCategory_id()).getCategory_name(),lst.get(i).getSotien());
+            SuKienChiTieuProvider cateThuChi = new SuKienChiTieuProvider(lst.get(i).getGiaodich_id(),R.drawable.thu,db.getCategory(lst.get(i).getCategory_id()).getCategory_name(),
+                    lst.get(i).getSotien(),lst.get(i).getNgaygiaodich(),db.getCategory(lst.get(i).getCategory_id()).getParent(),lst.get(i).getGhichu());
             lstThuChi.add(cateThuChi);
         }
         adapter = new SuKienChiTieuRecyclerAdapter(getActivity().getApplicationContext(),lstThuChi);
@@ -137,10 +139,10 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
         rView.setAdapter(adapter);
         //////////////////////////////////set adapter first/////////////////////////////////////////////
 
-        btnAcceptEdit.setOnClickListener(new View.OnClickListener() {
+       /* btnAcceptEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _vi vi = new _vi();
+                _giao vi = new _vi();
                 vi.setVi_id(editPosition);
                 //vi.setVi_name(txtEditViName.getText().toString());
                // vi.setSotien(txtEditViSoTien.getText().toString());
@@ -156,28 +158,28 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                     Toast.makeText(getActivity().getApplicationContext(),"Chỉnh sửa thất bại!",Toast.LENGTH_SHORT);
                 }
             }
-        });
+        });*/
 
-     /*   btnCancelEdit.setOnClickListener(new View.OnClickListener() {
+        btnCancelEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtEditViName.setText("");
-                txtEditViSoTien.setText("");
+                txtEditSoTien.setText("");
+                txtEditGhiChu.setText("");
                 vContain.setVisibility(View.GONE);
                 vButtonShow.setVisibility(View.VISIBLE);
                 vbox.setVisibility(View.GONE);
             }
-        });*/
+        });
 
-      /*  btnDelete.setOnClickListener(new View.OnClickListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                _vi vi = new _vi();
-                vi.setVi_id(editPosition);
-                if(db.xoaVi(vi)==true){
+                _giaodich giaodich = new _giaodich();
+                giaodich.setGiaodich_id(editPosition);
+                if(db.xoaGiaodich(giaodich)==true){
                     Toast.makeText(getActivity().getApplicationContext(),"Xóa thành công!",Toast.LENGTH_SHORT);
-                    txtEditViName.setText("");
-                    txtEditViSoTien.setText("");
+                    txtEditSoTien.setText("");
+                    txtEditGhiChu.setText("");
                     vContain.setVisibility(View.GONE);
                     vButtonShow.setVisibility(View.VISIBLE);
                     vbox.setVisibility(View.GONE);
@@ -186,14 +188,14 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                     Toast.makeText(getActivity().getApplicationContext(),"Xóa thất bại!",Toast.LENGTH_SHORT);
                 }
             }
-        });*/
+        });
 
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  txtAddViName.setText("");
-              //  txtAddViSoTien.setText("");
+                txtSoTien.setText("");
+                txtGhiChu.setText("");
                 vContain.setVisibility(View.GONE);
                 vButtonShow.setVisibility(View.VISIBLE);
             }
@@ -221,8 +223,9 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                         // Here you get the current item (a User object) that is selected by its position
                         ThuChiData thuChiData = adapter.getItem(position);
                         // Here you can do the action you want to...
+                        catagoryadd = db.getCategory(thuChiData.getId());
                         System.out.println(thuChiData.getId());
-
+                        System.out.println(db.getCategory(thuChiData.getId()).getParent());
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> adapter) {  }
@@ -235,18 +238,42 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                 vContain.setVisibility(View.VISIBLE);
                 vButtonShow.setVisibility(View.GONE);
                 vbox.setVisibility(View.GONE);
+                ArrayList<ThuChiData> list=new ArrayList<>();
+                for (_category cate:db.laydanhsachCategory(1)) {
+                    list.add(new ThuChiData(cate.getCategory_id(),cate.getCategory_name(),R.drawable.thu));
+                }
+                final SpinnerThuChiAdapter adapter=new SpinnerThuChiAdapter(getActivity(),R.layout.spinner_thuchi_layout,R.id.txtSpiner,list);
+                spinnerCatagory.setAdapter(adapter);
+                spinnerCatagory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view,
+                                               int position, long id) {
+                        // Here you get the current item (a User object) that is selected by its position
+                        ThuChiData thuChiData = adapter.getItem(position);
+                        // Here you can do the action you want to...
+                        catagoryadd = db.getCategory(thuChiData.getId());
+                        System.out.println(thuChiData.getId());
+                        System.out.println(db.getCategory(thuChiData.getId()).getParent());
+
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapter) {  }
+                });
             }
         });
 
-        /*btnAdd.setOnClickListener(new View.OnClickListener() {
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String viname = txtAddViName.getText().toString();
-                String sotien = txtAddViSoTien.getText().toString();
-                String subval = viname.replaceAll("\\s","");
-                AddViTask task;
+                String sotien = txtSoTien.getText().toString();
+                String ghichu = txtGhiChu.getText().toString();
+                String ngaygiaodich = viewNgay.getText().toString();
+                String subval = sotien.replaceAll("\\s","");
+                AddSuKienChiTieuTask task;
                 if(subval.equals("")==false) {
-                    task = new AddViTask(getActivity().getApplicationContext(), dbstring.TABLE_VI, user.getUser_id(), viname, 0,sotien,0);
+                    task = new AddSuKienChiTieuTask(getActivity().getApplicationContext(), dbstring.TABLE_GIAODICH, vi.getVi_id(),
+                            catagoryadd.getCategory_id(), sotien,ngaygiaodich,ghichu);
                     task.execute();
                     vContain.setVisibility(View.GONE);
                     vbox.setVisibility(View.GONE);
@@ -258,10 +285,10 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                     }
                     refreshData();
                 }else{
-                    Toast.makeText(getActivity().getApplicationContext(),"Tên ví không bỏ trống!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(),"Số tiền không bỏ trống!",Toast.LENGTH_SHORT).show();
                 }
             }
-        });*/
+        });
 
         //Hien thi datepicker
         viewNgay.setOnClickListener(new View.OnClickListener() {
@@ -278,7 +305,7 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
         });
 
 
-/*
+
         rView.addOnItemTouchListener(new com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.RecyclerItemClickListener(getActivity().getApplicationContext(),
                 rView, new com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -290,18 +317,21 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
 
                 editPosition=lstThuChi.get(position).getId();
 
-                EditText edit = (EditText)v.findViewById(R.id.editnameVi);
-                EditText edit2 = (EditText)v.findViewById(R.id.editsotienVi);
+                EditText editSoTien = (EditText)v.findViewById(R.id.editSoTien);
+                EditText editGhiChu = (EditText)v.findViewById(R.id.editGhiChu);
+                TextView editNgay = (TextView) v.findViewById(R.id.viewEditNgay);
+                Spinner editCata = (Spinner) v.findViewById(R.id.spinnerEditCatagory);
                 SuKienChiTieuProvider provider = lstThuChi.get(position);
-                edit.setText(provider.getName());
-                edit2.setText(provider.getSotien());
+                editSoTien.setText(provider.getSotien());
+                editGhiChu.setText(provider.getGhichu());
+                editNgay.setText(provider.getNgaygiaodich());
             }
 
             @Override
             public void onLongItemClick(View view, int position) {
 
             }
-        }));*/
+        }));
 
 
         return v;
@@ -312,8 +342,9 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
         lst= db.laydanhsachGiaodich(vi);
         lstThuChi = new ArrayList<SuKienChiTieuProvider>();
         for(int i=0;i<lst.size();i++){
-           // SuKienChiTieuProvider cateThuChi = new SuKienChiTieuProvider(lst.get(i).getVi_id(),R.drawable.chi,lst.get(i).getVi_name(),lst.get(i).getSotien());
-           // lstThuChi.add(cateThuChi);
+           SuKienChiTieuProvider cateThuChi = new SuKienChiTieuProvider(lst.get(i).getGiaodich_id(),R.drawable.thu,db.getCategory(lst.get(i).getCategory_id()).getCategory_name(),
+                   lst.get(i).getSotien(),lst.get(i).getNgaygiaodich(),db.getCategory(lst.get(i).getCategory_id()).getParent(),lst.get(i).getGhichu());
+            lstThuChi.add(cateThuChi);
         }
 
         adapter = new SuKienChiTieuRecyclerAdapter(getActivity().getApplicationContext(),lstThuChi);

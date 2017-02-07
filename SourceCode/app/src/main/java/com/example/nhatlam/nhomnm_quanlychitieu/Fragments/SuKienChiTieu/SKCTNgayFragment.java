@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -208,13 +209,24 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                 vbox.setVisibility(View.GONE);
                 ArrayList<ThuChiData> list=new ArrayList<>();
                 for (_category cate:db.laydanhsachCategory(0)) {
-                    System.out.println(cate.getCategory_id());
-                    System.out.println(cate.getCategory_name());
                     list.add(new ThuChiData(cate.getCategory_id(),cate.getCategory_name(),R.drawable.chi));
                 }
-                SpinnerThuChiAdapter adapter=new SpinnerThuChiAdapter(getActivity(),R.layout.spinner_thuchi_layout,R.id.txtSpiner,list);
+                final SpinnerThuChiAdapter adapter=new SpinnerThuChiAdapter(getActivity(),R.layout.spinner_thuchi_layout,R.id.txtSpiner,list);
                 spinnerCatagory.setAdapter(adapter);
-                
+                spinnerCatagory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view,
+                                               int position, long id) {
+                        // Here you get the current item (a User object) that is selected by its position
+                        ThuChiData thuChiData = adapter.getItem(position);
+                        // Here you can do the action you want to...
+                        System.out.println(thuChiData.getId());
+
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapter) {  }
+                });
                 }
         });
         btnShowAddThu.setOnClickListener(new View.OnClickListener() {

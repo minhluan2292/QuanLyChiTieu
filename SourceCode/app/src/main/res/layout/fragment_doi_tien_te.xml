@@ -2,11 +2,341 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#4cb6ac"
+    android:orientation="vertical" >
 
-    <TextView
-        android:text="doi tien te"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView8" />
+        android:padding="10dp"
+        android:background="#42474b">
+
+        <TextView
+            android:id="@+id/vietnam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-bold"
+            android:text="VND" />
+
+        <EditText
+            android:id="@+id/vn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@+id/btndoitien"
+            android:layout_toRightOf="@id/vietnam"
+            android:ellipsize="end"
+            android:hint="0"
+            android:inputType="numberSigned"
+            android:maxLines="1"
+            android:drawableLeft="@drawable/flag_vn"
+            android:textColor="#666666"
+            android:textSize="35dp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:background="@drawable/custom_edittext"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btndoitien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="sans-serif-light"
+            android:background="@drawable/button"
+            android:textColor="#fff"
+            android:text=" Change " />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+        <ImageView
+            android:id="@+id/hinhmy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/flag_usa"/>
+        <TextView
+            android:id="@+id/my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hinhmy"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-bold"
+            android:layout_marginLeft="10dp"
+            android:text="USA" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/my"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:textSize="22dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:hint=" 0 $"
+            android:id="@+id/usa" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+        <ImageView
+            android:id="@+id/hinhuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/flag_uc"/>
+
+        <TextView
+            android:id="@+id/uc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hinhuc"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-bold"
+            android:layout_marginLeft="10dp"
+            android:text="AUD" />
+
+        <TextView
+            android:id="@+id/aud"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/uc"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:textSize="22dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:hint=" 0 $" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+        <ImageView
+            android:id="@+id/hinhcanada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/flag_canada"/>
+
+        <TextView
+            android:id="@+id/canada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hinhcanada"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-bold"
+            android:layout_marginLeft="10dp"
+            android:text="CAD" />
+
+        <TextView
+            android:id="@+id/cad"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/canada"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:textSize="22dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:hint=" 0 $" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/hinheuro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/flag_ero"/>
+
+        <TextView
+            android:id="@+id/euro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hinheuro"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-bold"
+            android:layout_marginLeft="10dp"
+            android:text="EUR" />
+
+        <TextView
+            android:id="@+id/ero"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/euro"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:textSize="22dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:hint=" 0 £" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/hinhHK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/flag_hk"/>
+
+        <TextView
+            android:id="@+id/hongkong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hinhHK"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-bold"
+            android:layout_marginLeft="10dp"
+            android:text="HKD" />
+
+        <TextView
+            android:id="@+id/hkd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hongkong"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:textSize="22dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:hint=" 0 $" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/hinhSing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/flag_sing"/>
+
+        <TextView
+            android:id="@+id/singapo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hinhSing"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-bold"
+            android:layout_marginLeft="10dp"
+            android:text="SGD" />
+
+        <TextView
+            android:id="@+id/sgd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/singapo"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:textSize="22dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:hint=" 0 $" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+        <ImageView
+            android:id="@+id/hinhNhat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/flag_jp"/>
+        <TextView
+            android:id="@+id/nhat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/hinhNhat"
+            android:layout_centerVertical="true"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif-bold"
+            android:layout_marginLeft="10dp"
+            android:text="JPY" />
+
+        <TextView
+            android:id="@+id/jpy"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/nhat"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="#fff"
+            android:textSize="22dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="right"
+            android:hint=" 0 ¥" />
+
+    </RelativeLayout>
 </LinearLayout>

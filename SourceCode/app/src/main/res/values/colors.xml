@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="black_overlay">#66000000</color>
+
+    <color name="trans">#80000000  </color>
+    <color name="blue1">#33b5e5</color>
+    <color name="blue2">#007aff</color>
 </resources>

@@ -86,7 +86,10 @@ public class MainActivity extends AppCompatActivity
             user =  (_user)i.getExtras().getSerializable("user");
             user =db.getUser(user.getUser_id());
             lstVi=db.laydanhsachVi(user);
-            currentVi = lstVi.get(0);
+            if(lstVi.size()>0) {
+                currentVi = lstVi.get(0);
+            }else
+                currentVi=null;
             ArrayList<viData> vidatas = new ArrayList<viData>();
 
             for (_vi v:lstVi) {

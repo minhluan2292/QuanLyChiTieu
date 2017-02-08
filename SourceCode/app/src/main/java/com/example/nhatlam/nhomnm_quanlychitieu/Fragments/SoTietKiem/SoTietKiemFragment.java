@@ -304,20 +304,5 @@ public class SoTietKiemFragment extends Fragment implements View.OnClickListener
         vBoxMain.setVisibility(main);
         vBoxThem.setVisibility(them);
         vBoxDetail.setVisibility(detail);
-
-
-/*
-        if(vBoxMain.getVisibility() == View.VISIBLE){
-            txtTenSo.setText("");
-            txtTienMucTieu.setText("");
-            txtTienBanDau.setText("");
-            txtGhiChu.setText("");
-            vBoxMain.setVisibility(View.GONE);
-            vBoxThem.setVisibility(View.VISIBLE);
-        }else{
-            vBoxMain.setVisibility(View.VISIBLE);
-            vBoxThem.setVisibility(View.GONE);
-        }
-*/
     }
 }

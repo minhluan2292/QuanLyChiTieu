@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Catagory.ChiTieuFragment"
-    android:id="@+id/txtaaaaaaa"
+    tools:context="com.example.nhatlam.nhomnm_quanlychitieu.Fragments.SuKienChiTieu.SKCTNgayFragment"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,39 +12,182 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="@android:color/transparent"
+        android:id="@+id/layoutAddThuChi"
         android:weightSum="1"
-        android:visibility="gone"
-        android:id="@+id/layoutAddChiTieu">
+        android:visibility="gone">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/spinnerCatagory"
+            android:layout_weight="2.08"
+            android:spinnerMode="dialog" />
 
         <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/txtSoTien"
+            android:hint="Số tiền"
+            android:background="@drawable/border_style_1"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textSize="32sp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <EditText
+            android:layout_width="match_parent"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/txtChitieuName"
-            android:hint="Tên chi tiêu"
+            android:id="@+id/txtGhiChu"
+            android:hint="Ghi chú"
             android:background="@drawable/border_style_1"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:paddingStart="10dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:textSize="32sp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:text="NGÀY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewNgay"
+            android:textSize="32sp"
+            android:layout_weight="2.08" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/layoutAdd2">
+
+            <Button
+                android:text="Xác nhận"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAddNewThuChi"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="@color/colorPrimary"
+                android:textColor="#eeff00"
+                android:layout_marginRight="5dp"
+                android:drawableLeft="@drawable/ic_action_accept" />
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnCancelAddThuChi"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:background="#dd1613"
+                android:textColor="#eeff00"
+                android:layout_marginLeft="5dp"
+                android:drawableLeft="@drawable/ic_action_cancel" />
+
+            <!-- <Button
+                 android:id="@+id/btnAddNewVi"
+                 android:background="@drawable/btn_add"
+                 android:scaleType="fitStart"
+                 android:layout_marginStart="10dp"
+                 android:layout_height="50dp"
+                 android:layout_width="50dp" />
+
+             <Button
+                 android:id="@+id/btnCancelAddVi"
+                 android:background="@drawable/ball_stop"
+                 android:layout_width="45dp"
+                 android:layout_height="45dp" />-->
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ThuChiEditBox"
+        android:layout_margin="15dp"
+        android:background="#fffb80"
+        android:visibility="gone">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerEditCatagory"
+            android:layout_weight="2.08" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            android:id="@+id/editSoTien"
+            android:background="@drawable/border_style_1"
+            android:paddingStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/btnAddNewChiTieu"
-            android:background="@drawable/btn_add"
-            android:scaleType="fitStart"
-            android:layout_marginStart="10dp"
-            android:layout_height="50dp"
-            android:layout_width="50dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="So Tien"
+            android:ems="10"
+            android:id="@+id/editGhiChu"
+            android:background="@drawable/border_style_1"
+            android:paddingStart="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/btnCancelChiTieu"
-            android:layout_weight="1"
-            android:background="@drawable/ball_stop"
-            android:layout_width="45dp"
-            android:layout_height="45dp" />
+        <TextView
+            android:text="NGÀY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewEditNgay"
+            android:layout_weight="2.08" />
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="Thay đổi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditThuChi"
+                android:layout_weight="1"
+                android:background="@android:color/holo_green_light"
+                android:drawableLeft="@drawable/ic_action_accept"
+                android:textSize="12sp" />
+
+            <Button
+                android:text="Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnCancelEditThuChi"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:background="#ff0000"
+                android:drawableLeft="@drawable/ic_action_cancel" />
+
+            <Button
+                android:text="Xóa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnDeleteThuChi"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:background="@android:color/holo_orange_dark"
+                android:drawableLeft="@drawable/ic_action_discard" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -55,13 +197,13 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:id="@+id/layoutbtnAddChiTieu">
+        android:id="@+id/layoutbtnAddThuChi">
 
         <Button
-            android:text="Thêm mới mục chi tiêu"
+            android:text="CHI"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/btnShowContainThemSuKien"
+            android:id="@+id/btnShowContainChi"
             android:layout_weight="1"
             android:drawableLeft="@android:drawable/ic_menu_add"
             android:background="@android:color/holo_blue_dark"
@@ -69,6 +211,20 @@
             android:gravity="center_vertical"
             android:paddingStart="5dp"
             android:textSize="24sp" />
+
+        <Button
+            android:text="THU"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnShowContainThu"
+            android:layout_weight="1"
+            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:background="@android:color/holo_blue_dark"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical"
+            android:paddingStart="5dp"
+            android:textSize="24sp"
+            android:layout_marginStart="5dp" />
     </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
@@ -79,7 +235,7 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lstSuKienChiTieu">
+            android:id="@+id/lstThuChi">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>

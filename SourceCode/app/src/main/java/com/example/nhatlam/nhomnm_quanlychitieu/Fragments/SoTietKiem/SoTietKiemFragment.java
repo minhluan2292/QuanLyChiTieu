@@ -269,12 +269,17 @@ public class SoTietKiemFragment extends Fragment implements View.OnClickListener
         String tienMucTieu = txtTienMucTieu.getText().toString();
         String soTienBanDau = txtTienBanDau.getText().toString();
         String ghiChu = txtGhiChu.getText().toString();
-        int idVi = lstVi.get(spVi.getSelectedItemPosition()).getVi_id();
+        //int idVi = lstVi.get(spVi.getSelectedItemPosition()).getVi_id();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = sdf.format(new Date());
+        _vi vi_temp = lstVi.get(spVi.getSelectedItemPosition());
+        if (Integer.parseInt(vi_temp.getSotien()) < Integer.parseInt(soTienBanDau)){
+            Mesage("Số tiền trong ví không đủ.");
+            return;
+        }
 
         _sotietkiem sotietkiem = new _sotietkiem();
-        sotietkiem.setVi_id(idVi);
+        sotietkiem.setVi_id(vi_temp.getVi_id());
         sotietkiem.setMuctieu(tienMucTieu);
         sotietkiem.setSotietkiem_name(tenSo);
         sotietkiem.setSotienbandau(soTienBanDau);
@@ -283,6 +288,9 @@ public class SoTietKiemFragment extends Fragment implements View.OnClickListener
 
         if(db.themSotietkiem(sotietkiem)){
             Toast.makeText(this.getActivity(),"Thêm thành công!",Toast.LENGTH_SHORT).show();
+
+            vi_temp.setSotien(String.valueOf(Integer.parseInt(vi_temp.getSotien()) - Integer.parseInt(soTienBanDau)));
+            db.chinhsuaVi(vi_temp);
             changeVisibleView(View.VISIBLE, View.GONE, View.GONE);
         }else{
             Toast.makeText(this.getActivity(),"Thêm thất bại!",Toast.LENGTH_SHORT).show();

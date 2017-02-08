@@ -136,13 +136,13 @@ public class SoNoFragment extends Fragment implements View.OnClickListener{
             }
         });
 
-        //_vi ((MainActivity)getActivity()).getCurrentVi() = lstVi.get(0);
-        listSoNo = db.laydanhsachSono(((MainActivity)getActivity()).getCurrentVi());
-        Mesage(String.valueOf(listSoNo.size()));
+        _vi vi_Choose = lstVi.get(0);
+        listSoNo = db.laydanhsachSono(vi_Choose);
+
         if(listSoNo.size() > 0){
             //Toast.makeText(this.getActivity(),Integer.toString(listSoTietKiem.size()),Toast.LENGTH_SHORT).show();
             //ArrayAdapter<_sotietkiem> adapter_Sotietkiem = new ArrayAdapter<_sotietkiem>(this.getActivity(),R.layout.sotietkiem_item,listSoTietKiem);
-            lstSoNo.setAdapter(new SoNoArrayAdapter(this.getActivity().getApplicationContext(),listSoNo));
+            lstSoNo.setAdapter(new SoNoArrayAdapter(this.getActivity(),listSoNo));
 
             lstSoNo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -217,7 +217,7 @@ public class SoNoFragment extends Fragment implements View.OnClickListener{
 
     private void TraTienNo(){
         int soTienTra = Integer.parseInt(txtSoTienTra.getText().toString());
-        _vi vi_temp = db.getVI(((MainActivity)getActivity()).getCurrentVi().getVi_id());
+        _vi vi_temp = db.getVI(lstVi.get(spViNo.getSelectedItemPosition()).getVi_id());
         int soTienTrongVi = Integer.parseInt(vi_temp.getSotien());
         if (soTienTrongVi >= soTienTra) {
             soTienTrongVi -= soTienTra;
@@ -235,7 +235,7 @@ public class SoNoFragment extends Fragment implements View.OnClickListener{
 
     private  void NhanTienTraNo(){
         int soTienNhan = Integer.parseInt(txtSoTienNhan.getText().toString());
-        _vi vi_temp = db.getVI(((MainActivity)getActivity()).getCurrentVi().getVi_id());
+        _vi vi_temp = db.getVI(lstVi.get(spViNo.getSelectedItemPosition()).getVi_id());
         int soTienTrongVi = Integer.parseInt(vi_temp.getSotien());
         soTienTrongVi += soTienNhan;
         vi_temp.setSotien(String.valueOf(soTienTrongVi));
@@ -254,10 +254,28 @@ public class SoNoFragment extends Fragment implements View.OnClickListener{
         int soTien = Integer.parseInt(txtSoTienThem.getText().toString());
         String ghiChu = txtGhiChuThem.getText().toString();
 
-
+        if (loaiNo == 0){
+            //Cho vay
+            _vi vi_temp = db.getVI(lstVi.get(spViNo.getSelectedItemPosition()).getVi_id());
+            float soTienTrongVi = Float.parseFloat(vi_temp.getSotien());
+            if (soTienTrongVi >= soTien) {
+                soTienTrongVi -= soTien;
+                vi_temp.setSotien(String.valueOf(soTienTrongVi));
+                db.chinhsuaVi(vi_temp);
+            }else{
+                Mesage("Số tiền trong ví không đủ.");
+                return;
+            }
+        }else{
+            //Nợ
+            _vi vi_temp = db.getVI(lstVi.get(spViNo.getSelectedItemPosition()).getVi_id());
+            vi_temp.setSotien(String.valueOf(Integer.parseInt(vi_temp.getSotien()) + soTien));
+            db.chinhsuaVi(vi_temp);
+            soTien *= -1;
+        }
 
         _sono soNo = new _sono();
-        soNo.setVi_id(spViNo.getSelectedItemPosition());
+        soNo.setVi_id(lstVi.get(spViNo.getSelectedItemPosition()).getVi_id());
         soNo.setSotien(String.valueOf(soTien));
         soNo.setGhichu(ghiChu);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -270,27 +288,9 @@ public class SoNoFragment extends Fragment implements View.OnClickListener{
         //soNo.setLoaino_id(0);
 
         if(db.themSono(soNo)==true){
-            Log.d(null,"AAAAAAAAAAAA");
+            //Log.d(null,"AAAAAAAAAAAA");
             Toast.makeText(this.getActivity(),"Thêm thành công!",Toast.LENGTH_SHORT).show();
-            if (loaiNo == 0){
-                //Cho vay
-                _vi vi_temp = db.getVI(((MainActivity)getActivity()).getCurrentVi().getVi_id());
-                float soTienTrongVi = Float.parseFloat(vi_temp.getSotien());
-                if (soTienTrongVi >= soTien) {
-                    soTienTrongVi -= soTien;
-                    vi_temp.setSotien(String.valueOf(soTienTrongVi));
-                    db.chinhsuaVi(vi_temp);
-                }else{
-                    Mesage("Số tiền trong ví không đủ.");
-                    return;
-                }
-            }else{
-                //Nợ
-                _vi vi_temp = db.getVI(((MainActivity)getActivity()).getCurrentVi().getVi_id());
-                vi_temp.setSotien(String.valueOf(soTien));
-                db.chinhsuaVi(vi_temp);
-                soTien *= -1;
-            }
+
             changeVisibleView(View.VISIBLE, View.GONE, View.GONE);
 
         }else{
@@ -320,8 +320,8 @@ public class SoNoFragment extends Fragment implements View.OnClickListener{
     }
 
     private void CapNhatDanhSachSoNo(){
-        listSoNo = db.laydanhsachSono(((MainActivity)getActivity()).getCurrentVi());
-        lstSoNo.setAdapter(new SoNoArrayAdapter(this.getActivity().getApplicationContext(),listSoNo));
-        //Log.d(null, Integer.toString(listSoNo.size()));
+        _vi vi_Choose = lstVi.get(spViNo.getSelectedItemPosition());
+        listSoNo = db.laydanhsachSono(vi_Choose);
+        lstSoNo.setAdapter(new SoNoArrayAdapter(this.getActivity(),listSoNo));
     }
 }

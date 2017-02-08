@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
             fragmentTransaction.commit();
         }else if (id == R.id.nav_SoNo) {
-            SoNoFragment fragment = new SoNoFragment();
+            SoNoFragment fragment = new SoNoFragment(user);
             fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
             fragmentTransaction.commit();
         }else if (id == R.id.nav_ChuyenTien) {

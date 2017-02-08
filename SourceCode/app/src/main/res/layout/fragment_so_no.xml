@@ -4,9 +4,264 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:text="So no"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView6" />
+        android:layout_height="match_parent"
+        android:id="@+id/vBoxAddSoNo">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Đối tượng"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView10"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/txtDoiTuongThem"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Loại"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView11"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+            <Spinner
+                android:layout_height="wrap_content"
+                android:id="@+id/spLoai"
+                android:layout_width="220dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Số tiền"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView14"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/txtSoTienThem"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Ghi chú"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView15"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/txtGhiChuThem"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="Lưu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnLuu"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Trở về"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnTroVeThem"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vBoxMainSoNo">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="Thêm"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnThem"
+                android:layout_width="200dp" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spViNo"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lstSoNo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vBoxDetailSoNo">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Đối tượng"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView16"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/txtDoiTuongChiTiet"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Trạng thái"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView16"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/txtTrangThai"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Số tiền"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView16"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:id="@+id/txtSoTienChiTiet"
+                android:layout_weight="1"
+                android:layout_width="150dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/txtSoTienTra"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Trả"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnTra"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/txtSoTienNhan"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="Nhận"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnNhan"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Button
+            android:text="Trở về"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnTroVeChiTiet" />
+
+    </LinearLayout>
+
 </LinearLayout>

@@ -43,7 +43,8 @@ public class SuKienChiTieuFragment extends Fragment {
         vPaper = (ViewPager)v.findViewById(R.id.viewPaperSuKienChiTieu);
         fragmentManager = getChildFragmentManager();
         adapter = new fragmentAdapter(fragmentManager);
-        adapter.addFragment(new SKCTNgayFragment(vi),"Chi Tiêu Ngày");
+        adapter.addFragment(new SKCTNgayFragment(vi),"Chi Tiêu Hàng Ngày");
+        adapter.addFragment(new SKCTDuKienragment(vi),"Chi Tiêu Dự Kiến");
        // adapter.addFragment(new LoaiViFragment(),"Loại Ví");
 
         vPaper.setAdapter(adapter);

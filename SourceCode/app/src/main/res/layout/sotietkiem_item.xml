@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
-        android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtTenSo"
-        android:textSize="20sp" />
+        android:textSize="22sp"
+        tools:text="abvaf "
+        android:textStyle="normal|bold"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/holo_red_light" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -21,7 +25,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView12"
             android:layout_weight="1"
-            android:layout_width="10dp" />
+            android:layout_width="10dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:text="TextView"
@@ -29,7 +35,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtMucTieu"
             android:layout_weight="1"
-            android:textSize="14sp" />
+            android:textSize="20sp"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,7 +49,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView12"
             android:layout_weight="1"
-            android:layout_width="10dp" />
+            android:layout_width="10dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:text="TextView"
@@ -50,6 +59,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtSoTienCo"
             android:layout_weight="1"
-            android:textSize="14sp" />
+            android:textSize="20sp"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 </LinearLayout>

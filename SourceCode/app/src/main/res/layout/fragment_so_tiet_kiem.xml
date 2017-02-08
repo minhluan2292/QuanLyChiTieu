@@ -16,7 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtTenSoTietKiem"
-            android:textSize="20sp" />
+            android:textSize="36sp"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -28,7 +30,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView12"
                 android:layout_weight="1"
-                android:layout_width="10dp" />
+                android:layout_width="10dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:text="TextView"
@@ -36,7 +40,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtMucTieu"
                 android:layout_weight="1"
-                android:textSize="14sp" />
+                android:textSize="20sp"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,7 +54,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView12"
                 android:layout_weight="1"
-                android:layout_width="10dp" />
+                android:layout_width="10dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:text="TextView"
@@ -57,7 +64,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/txtSoTienCo"
                 android:layout_weight="1"
-                android:textSize="14sp" />
+                android:textSize="20sp"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -70,14 +78,18 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textView12"
                 android:layout_weight="1"
-                android:layout_width="10dp" />
+                android:layout_width="10dp"
+                android:textSize="20sp"
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txtViTietKiem"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
 
@@ -98,7 +110,9 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView12"
                     android:layout_weight="1"
-                    android:layout_width="10dp" />
+                    android:layout_width="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black" />
 
                 <EditText
                     android:layout_width="wrap_content"
@@ -106,7 +120,9 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/txtGuiVao"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black" />
 
             </LinearLayout>
 
@@ -116,7 +132,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnGuiVao"
                 android:textAlignment="center"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                android:textColor="@color/blue1" />
         </LinearLayout>
 
         <LinearLayout
@@ -136,7 +155,9 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView12"
                     android:layout_weight="1"
-                    android:layout_width="10dp" />
+                    android:layout_width="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black" />
 
                 <EditText
                     android:layout_width="wrap_content"
@@ -144,7 +165,9 @@
                     android:inputType="number"
                     android:ems="10"
                     android:id="@+id/txtRutRa"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black" />
 
             </LinearLayout>
 
@@ -154,7 +177,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btnRutRa"
                 android:textAlignment="center"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                android:textColor="@color/blue1" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -165,50 +191,24 @@
                     android:text="Xóa"
                     android:layout_width="191dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnXoa" />
+                    android:id="@+id/btnXoa"
+                    android:textSize="18sp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue1" />
 
                 <Button
                     android:text="Trở về"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btnTroVe"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue1" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/vBoxMain">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:text="Thêm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnThem"
-                android:layout_weight="1" />
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spViTietKiem"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/lstSoTietKiem" />
 
     </LinearLayout>
 
@@ -223,7 +223,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
-            android:textSize="30sp" />
+            android:textSize="36sp"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -234,16 +236,19 @@
                 android:text="Tên sổ"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9"
-                android:layout_weight="1"
-                android:layout_width="60dp" />
+                android:layout_weight="1.76"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_width="35sp" />
 
             <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/txtTenSo"
-                android:layout_weight="1" />
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content" />
 
         </LinearLayout>
 
@@ -256,16 +261,20 @@
                 android:text="Mục tiêu"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9"
-                android:layout_weight="1"
-                android:layout_width="60dp" />
+                android:layout_weight="0.53"
+                android:textSize="20sp"
+                android:layout_width="50sp"
+                android:textColor="@android:color/black" />
 
             <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/txtTienMucTieu"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="50sp"
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
 
@@ -278,16 +287,20 @@
                 android:text="Tiền ban đầu"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9"
-                android:layout_weight="1"
-                android:layout_width="60dp" />
+                android:layout_weight="0.52"
+                android:textSize="20sp"
+                android:layout_width="50sp"
+                android:textColor="@android:color/black" />
 
             <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/txtTienBanDau"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="50sp"
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
 
@@ -300,14 +313,16 @@
                 android:text="Ví"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9"
-                android:layout_weight="1"
-                android:layout_width="60dp" />
+                android:layout_weight="0.54"
+                android:textSize="20sp"
+                android:layout_width="50sp"
+                android:textColor="@android:color/black" />
 
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spVi"
-                android:layout_weight="1" />
+                android:layout_weight="1.03" />
 
         </LinearLayout>
 
@@ -320,16 +335,20 @@
                 android:text="Ghi chú"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView9"
-                android:layout_weight="1"
-                android:layout_width="60dp" />
+                android:layout_weight="0.51"
+                android:textSize="20sp"
+                android:layout_width="50sp"
+                android:textColor="@android:color/black" />
 
             <EditText
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/txtGhiChu"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:layout_width="50sp"
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
 
@@ -343,16 +362,85 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnLuu"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textColor="@color/blue1" />
 
             <Button
                 android:text="Thoát"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnThoat"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textColor="@color/blue1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vBoxMain">
+
+        <TextView
+            android:text="SỔ TIẾT KIỆM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:textSize="36sp"
+            android:textStyle="normal|bold"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Chọn ví"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView17"
+                android:layout_weight="0.10"
+                android:textSize="24sp" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spViTietKiem"
                 android:layout_weight="1" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:text="Thêm"
+                android:layout_width="118dp"
+                android:layout_height="34dp"
+                android:id="@+id/btnThem"
+                android:elevation="0dp"
+                android:textAllCaps="false"
+                android:textSize="24sp"
+                android:background="@color/black_overlay"
+                android:textAlignment="center"
+                android:textColor="@color/blue1" />
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lstSoTietKiem" />
 
     </LinearLayout>
 

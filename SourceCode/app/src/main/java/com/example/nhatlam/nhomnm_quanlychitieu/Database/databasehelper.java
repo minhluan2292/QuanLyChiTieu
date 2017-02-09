@@ -301,6 +301,8 @@ public class databasehelper extends SQLiteOpenHelper {
         float ftienVi1 = Float.parseFloat(vi1.getSotien());
         float ftienVi2 = Float.parseFloat(vi2.getSotien());
 
+        if (vi1.getDonvitien() != vi2.getDonvitien())
+            return false;
         if(fsotienchuyen>ftienVi1){
             return false;
         }else {

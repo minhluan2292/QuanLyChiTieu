@@ -12,7 +12,7 @@ import com.example.nhatlam.nhomnm_quanlychitieu.R;
 import java.util.ArrayList;
 
 /**
- * Created by NHATLAM on 2/8/2017.
+ * Created by Phong Pham on 2/8/2017.
  */
 
 public class spinnerViAdapter extends ArrayAdapter<viData>{

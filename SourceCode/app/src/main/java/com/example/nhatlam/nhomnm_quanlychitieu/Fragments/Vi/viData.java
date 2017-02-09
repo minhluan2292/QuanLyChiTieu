@@ -8,6 +8,14 @@ public class viData {
     int id;
     String viname;
 
+    public viData(){
+        this.id = 0;
+        this.viname= "";
+    }
+    public viData(int id,String text){
+        this.id = id;
+        this.viname=text;
+    }
     public int getId() {
         return id;
     }

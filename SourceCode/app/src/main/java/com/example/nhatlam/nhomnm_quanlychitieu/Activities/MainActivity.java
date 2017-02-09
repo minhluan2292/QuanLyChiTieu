@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
             fragmentTransaction.commit();
         }else if (id == R.id.nav_ChuyenTien) {
-            ChuyenTienFragment fragment = new ChuyenTienFragment();
+            ChuyenTienFragment fragment = new ChuyenTienFragment(user);
             fragmentTransaction.replace(layoutContain.getId(),fragment).addToBackStack(null);
             fragmentTransaction.commit();
         }else if (id == R.id.nav_DoiTienTe) {

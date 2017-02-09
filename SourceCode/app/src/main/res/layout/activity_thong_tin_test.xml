@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/trencung"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:id="@+id/framelayout1"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+
+            >
+            <ImageView
+                android:id="@+id/logoUD"
+                android:layout_width="fill_parent"
+                android:layout_height="246dp"
+                android:layout_alignParentTop="true"
+                android:background="#3367d6"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:src="@drawable/thongtin"/>
+
+            <ImageView
+                android:id="@+id/btnBak"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/button_back"/>
+        </FrameLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/giua"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/trencung"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/vachgiua"
+            android:layout_width="1px"
+            android:layout_height="80dp"
+            android:background="#d1d5d0"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:id="@+id/gioithieu"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/vachgiua"
+            android:background="#32CD32"
+            android:padding="10dp"
+            android:src="@drawable/button_gioithieu" />
+
+        <ImageView
+            android:id="@+id/hotro"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:background="#33b5e5"
+            android:layout_toRightOf="@id/vachgiua"
+            android:src="@drawable/button_hotro"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/cuoicung1"
+        android:layout_below="@id/giua"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/text1thongtin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Xem thông tin về chúng tôi"
+            android:fontFamily="sans-serif-light"
+            android:textSize="15dp"
+            android:paddingTop="15dp"
+            android:paddingLeft="15dp"/>
+        <RelativeLayout
+            android:gravity="center_horizontal"
+            android:paddingBottom="15dp"
+            android:layout_below="@id/text1thongtin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnFace"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/face"/>
+            <Button
+                android:id="@+id/btnGooglePlus"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@id/btnFace"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/google"/>
+            <Button
+                android:id="@+id/btnTweet"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@id/btnGooglePlus"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/twitter"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/cuoicung2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:textSize="10dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:text="© 2014 Nhóm MN.All right reserved"/>
+    </RelativeLayout>
+</RelativeLayout>

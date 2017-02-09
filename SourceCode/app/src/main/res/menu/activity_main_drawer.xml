@@ -29,7 +29,7 @@
             android:title="Sổ nợ" />
         <item
             android:id="@+id/nav_ChuyenTien"
-            android:icon="@drawable/icon_transfer"
+            android:icon="@drawable/icon2"
             android:title="Chuyển tiền" />
         <item
             android:id="@+id/nav_DoiTienTe"
@@ -43,6 +43,10 @@
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
+            <item
+                android:id="@+id/nav_ThongTin"
+                android:icon="@drawable/icon7"
+                android:title="Thông Tin" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

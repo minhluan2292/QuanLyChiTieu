@@ -33,6 +33,7 @@ import com.example.nhatlam.nhomnm_quanlychitieu.Fragments.Vi.viData;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._user;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._vi;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
+import com.example.nhatlam.nhomnm_quanlychitieu.ThongTinTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -221,7 +222,12 @@ public class MainActivity extends AppCompatActivity
 
         } else  if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        }
+        else  if (id == R.id.nav_ThongTin) {
+            Intent i = new Intent(this.getApplicationContext(),ThongTinTest.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_send) {
             user = db.dangxuatUser(user);
             Intent i = new Intent(this.getApplicationContext(),DangNhapActivity.class);
             startActivity(i);

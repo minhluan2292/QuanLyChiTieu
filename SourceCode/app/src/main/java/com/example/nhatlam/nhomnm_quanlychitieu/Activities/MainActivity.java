@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     static List<_vi> lstVi;
     static _vi currentVi;
     static spinnerViAdapter adapterVi;
-
+    FragmentTransaction fragmentTransaction;
     public static _vi getCurrentVi() {
         return currentVi;
     }
@@ -124,6 +124,14 @@ public class MainActivity extends AppCompatActivity
         txtuser = (TextView) header.findViewById(R.id.txtUser);
 
         txtuser.setText(user.getUsername());
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if(lstVi.size()>0) {
+            SuKienChiTieuFragment fragment = new SuKienChiTieuFragment(currentVi);
+            fragmentTransaction.replace(layoutContain.getId(), fragment).addToBackStack(null);
+            fragmentTransaction.commit();
+        }else{
+            Toast.makeText(getApplicationContext(),"Hãy tạo ví trước khi thêm giao dịch!",Toast.LENGTH_SHORT).show();
+        }
 
     }
     public void reloadSpinnerVi(){
@@ -177,7 +185,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         int id = item.getItemId();
 
 

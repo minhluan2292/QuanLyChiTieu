@@ -29,7 +29,7 @@
             android:ems="10"
             android:id="@+id/txtSoTien"
             android:hint="Số tiền"
-            android:background="@drawable/border_style_1"
+            android:background="@color/blue1"
             android:layout_height="wrap_content"
             android:paddingStart="15dp"
             android:textSize="32sp"
@@ -42,20 +42,38 @@
             android:ems="10"
             android:id="@+id/txtGhiChu"
             android:hint="Ghi chú"
-            android:background="@drawable/border_style_1"
+            android:background="@color/blue1"
             android:layout_height="wrap_content"
             android:paddingStart="15dp"
             android:textSize="32sp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp" />
 
-        <TextView
-            android:text="NGÀY"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/viewNgay"
-            android:textSize="32sp"
-            android:layout_weight="2.08" />
+            android:layout_height="match_parent"
+            android:layout_weight="2.08">
+
+            <TextView
+                android:text="Ngày:"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView22"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark"
+                android:textSize="30sp"
+                android:layout_width="175dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/viewNgay"
+                android:textSize="32sp"
+                android:layout_weight="1"
+                android:textColor="@android:color/background_dark"
+                android:background="#cdffc3"
+                android:paddingLeft="15dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"

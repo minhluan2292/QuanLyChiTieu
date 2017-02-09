@@ -22,7 +22,7 @@
             android:ems="10"
             android:id="@+id/txtThuName"
             android:hint="Tên Khoản thu"
-            android:background="@drawable/border_style_1"
+            android:background="@color/blue1"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:paddingStart="10dp"
@@ -30,17 +30,20 @@
 
         <Button
             android:id="@+id/btnAddNewThu"
-            android:background="@drawable/btn_add"
             android:scaleType="fitStart"
             android:layout_marginStart="10dp"
             android:layout_height="50dp"
-            android:layout_width="50dp" />
+            android:layout_width="50dp"
+            android:background="@color/colorPrimary"
+            android:drawableLeft="@drawable/ic_action_accept" />
         <Button
             android:id="@+id/btnCancelThu"
             android:layout_weight="1"
-            android:background="@drawable/ball_stop"
-            android:layout_width="45dp"
-            android:layout_height="45dp" />
+            android:background="@android:color/holo_red_dark"
+            android:drawableLeft="@drawable/ic_action_cancel"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp" />
 
     </LinearLayout>
     <LinearLayout
@@ -59,7 +62,7 @@
             android:text="Name"
             android:ems="10"
             android:id="@+id/editnameThu"
-            android:background="@drawable/border_style_1"
+            android:background="@color/blue1"
             android:paddingStart="15dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"

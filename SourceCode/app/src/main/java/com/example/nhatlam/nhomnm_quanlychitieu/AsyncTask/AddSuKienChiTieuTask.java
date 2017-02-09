@@ -6,9 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.nhatlam.nhomnm_quanlychitieu.Database.databasehelper;
-import com.example.nhatlam.nhomnm_quanlychitieu.Database.dbstring;
 import com.example.nhatlam.nhomnm_quanlychitieu.Models._giaodich;
-import com.example.nhatlam.nhomnm_quanlychitieu.Models._category;
 /**
  * Created by MinhLuan on 2/5/2017.
  */
@@ -45,6 +43,7 @@ public class AddSuKienChiTieuTask extends AsyncTask<Void, Void, Boolean> {
         giaodich.setSotien(sotien);
         giaodich.setNgaygiaodich(ngaygiaodich);
         giaodich.setGhichu(ghichu);
+        Log.d(null,giaodich.getNgaygiaodich());
 
         return db.themGiaodich(giaodich);
 

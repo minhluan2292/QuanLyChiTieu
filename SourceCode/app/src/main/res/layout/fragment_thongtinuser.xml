@@ -181,7 +181,7 @@
                 android:ems="10"
                 android:id="@+id/txtEditSDT"
                 android:layout_weight="0.23"
-                android:background="#bbffa8"
+                android:background="@color/blue1"
                 android:padding="10dp" />
         </LinearLayout>
 
@@ -262,7 +262,7 @@
                 android:ems="10"
                 android:id="@+id/txtNewUserPassword"
                 android:layout_weight="1"
-                android:background="#bbffa8"
+                android:background="@color/blue1"
                 android:padding="10dp" />
 
         </LinearLayout>
@@ -289,7 +289,7 @@
                 android:ems="10"
                 android:id="@+id/txtOldUserPassword"
                 android:layout_weight="0.23"
-                android:background="#bbffa8"
+                android:background="@color/blue1"
                 android:padding="10dp" />
         </LinearLayout>
 

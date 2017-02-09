@@ -29,8 +29,10 @@ import com.example.nhatlam.nhomnm_quanlychitieu.Models._vi;
 import com.example.nhatlam.nhomnm_quanlychitieu.R;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -211,6 +213,10 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                 for (_category cate:db.laydanhsachCategory(0)) {
                     list.add(new ThuChiData(cate.getCategory_id(),cate.getCategory_name(),R.drawable.chi));
                 }
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String currentDate = sdf.format(new Date());
+
+                viewNgay.setText(currentDate.toString());
                 final SpinnerThuChiAdapter adapter=new SpinnerThuChiAdapter(getActivity(),R.layout.spinner_thuchi_layout,R.id.txtSpiner,list);
                 spinnerCatagory.setAdapter(adapter);
                 spinnerCatagory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -228,6 +234,7 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                     @Override
                     public void onNothingSelected(AdapterView<?> adapter) {  }
                 });
+
                 }
         });
         btnShowAddThu.setOnClickListener(new View.OnClickListener() {
@@ -240,6 +247,10 @@ public class SKCTNgayFragment extends Fragment implements MyDialogFragment.OnDat
                 for (_category cate:db.laydanhsachCategory(1)) {
                     list.add(new ThuChiData(cate.getCategory_id(),cate.getCategory_name(),R.drawable.thu));
                 }
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String currentDate = sdf.format(new Date());
+
+                viewNgay.setText(currentDate.toString());
                 final SpinnerThuChiAdapter adapter=new SpinnerThuChiAdapter(getActivity(),R.layout.spinner_thuchi_layout,R.id.txtSpiner,list);
                 spinnerCatagory.setAdapter(adapter);
                 spinnerCatagory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

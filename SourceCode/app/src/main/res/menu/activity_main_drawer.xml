@@ -5,15 +5,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_Thongtincanhan"
-            android:icon="@drawable/icon_person"
+            android:icon="@drawable/user"
             android:title="Thông tin cá nhân" />
         <item
             android:id="@+id/nav_Catagory"
-            android:icon="@drawable/icon_chitieu"
+            android:icon="@drawable/icon1"
             android:title="Quản lý danh mục" />
         <item
             android:id="@+id/nav_SuKienChiTieu"
-            android:icon="@drawable/icon_save"
+            android:icon="@drawable/icon4"
             android:title="Sự Kiện Chi Tiêu" />
         <item
             android:id="@+id/nav_Vi"
